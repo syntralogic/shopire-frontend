@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  (function(){
+    if(localStorage.getItem('shopire_dark')==='true'){
+      document.documentElement.setAttribute('data-theme','dark');
+    }
+  })();
+</script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel – SHOPIRE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <!-- Admin CSS - alag file -->
+  <link rel="stylesheet" href="css/admin.css"/>
+</head>
+<body>
+
+<!-- Sidebar Overlay (mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<!-- ── SIDEBAR ── -->
+<aside class="admin-sidebar" id="adminSidebar">
+  <a href="../index.html" class="sidebar-logo">
+    <div class="sidebar-logo-icon"><i class="fas fa-bolt"></i></div>
+    SHOPIRE
+    <span style="font-size:10px;color:#555;font-weight:600;margin-left:4px;">ADMIN</span>
+  </a>
+
+  <div class="sidebar-section">Main</div>
+  <button class="sidebar-link active" onclick="showPage('dashboard',this)">
+    <i class="fas fa-chart-pie"></i> Dashboard
+  </button>
+
+  <div class="sidebar-section">Store</div>
+  <button class="sidebar-link" onclick="showPage('orders',this)">
+    <i class="fas fa-box-open"></i> Orders
+    <span class="link-badge" id="pendingBadge">0</span>
+  </button>
+  <button class="sidebar-link" onclick="showPage('products',this)">
+    <i class="fas fa-tags"></i> Products
+  </button>
+
+  <div class="sidebar-section">Actions</div>
+  <button class="sidebar-link" onclick="openAddProduct()">
+    <i class="fas fa-plus-circle"></i> Add Product
+  </button>
+  <a href="../index.html" class="sidebar-link">
+    <i class="fas fa-store"></i> View Store
+  </a>
+
+  <div class="sidebar-bottom">
+    <div class="sidebar-user">
+      <div class="sidebar-user-avatar"><i class="fas fa-user-shield"></i></div>
+      <div class="sidebar-user-info">
+        <strong id="adminName">Admin</strong>
+        <span>Administrator</span>
+      </div>
+    </div>
+    <a href="login.html" class="sidebar-logout" onclick="doAdminLogout(event)">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+  </div>
+</aside>
+
+<!-- ── MAIN ── -->
+<div class="admin-main">
+
+  <!-- Topbar -->
+  <div class="admin-topbar">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button class="mobile-menu-btn" onclick="openSidebar()"><i class="fas fa-bars"></i></button>
+      <h2 id="pageTitle"><i class="fas fa-chart-pie" style="color:var(--red);margin-right:8px"></i>Dashboard</h2>
+    </div>
+    <div class="admin-topbar-right">
+      <button class="topbar-btn" onclick="refreshData()"><i class="fas fa-sync-alt"></i> Refresh</button>
+      <button class="topbar-btn red" onclick="openAddProduct()"><i class="fas fa-plus"></i> Add Product</button>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="admin-content">
+
+    <!-- ═══════ DASHBOARD PAGE ═══════ -->
+    <div class="page active" id="page-dashboard">
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card red">
+          <div class="stat-icon red"><i class="fas fa-box-open"></i></div>
+          <div class="stat-info">
+            <div class="stat-num" id="statOrders">—</div>
+            <div class="stat-label">Total Orders</div>
+            <div class="stat-change up" id="statPendingOrders"><i class="fas fa-clock"></i> Loading...</div>
+          </div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-icon green"><i class="fas fa-dollar-sign"></i></div>
+          <div class="stat-info">
+            <div class="stat-num" id="statRevenue">—</div>
+            <div class="stat-label">Total Revenue</div>
+            <div class="stat-change up" id="statRevenueChange"><i class="fas fa-arrow-up"></i> Delivered</div>
+          </div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-icon blue"><i class="fas fa-tags"></i></div>
+          <div class="stat-info">
+            <div class="stat-num" id="statProducts">—</div>
+            <div class="stat-label">Products</div>
+            <div class="stat-change up" id="statProductsChange"><i class="fas fa-check"></i> In stock</div>
+          </div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-icon purple"><i class="fas fa-truck"></i></div>
+          <div class="stat-info">
+            <div class="stat-num" id="statShipped">—</div>
+            <div class="stat-label">Shipped</div>
+            <div class="stat-change up" id="statDelivered"><i class="fas fa-check-circle"></i> Delivered</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Orders on Dashboard -->
+      <div class="panel">
+        <div class="panel-head">
+          <h3><i class="fas fa-clock" style="color:var(--red);margin-right:8px"></i>Recent Orders</h3>
+          <button class="topbar-btn" onclick="showPage('orders',null)">View All <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="panel-body">
+          <div id="recentOrdersTable"><div class="loading-state"><i class="fas fa-spinner fa-spin"></i>Loading...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ ORDERS PAGE ═══════ -->
+    <div class="page" id="page-orders">
+      <div class="panel">
+        <div class="panel-head">
+          <h3><i class="fas fa-box-open" style="color:var(--red);margin-right:8px"></i>All Orders</h3>
+          <span id="ordersCount" style="font-size:13px;color:var(--muted);font-weight:600;"></span>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tab-bar">
+          <button class="tab-btn active" onclick="filterOrders('all',this)">All</button>
+          <button class="tab-btn" onclick="filterOrders('pending',this)">Pending</button>
+          <button class="tab-btn" onclick="filterOrders('processing',this)">Processing</button>
+          <button class="tab-btn" onclick="filterOrders('shipped',this)">Shipped</button>
+          <button class="tab-btn" onclick="filterOrders('delivered',this)">Delivered</button>
+          <button class="tab-btn" onclick="filterOrders('cancelled',this)">Cancelled</button>
+        </div>
+
+        <!-- Filter -->
+        <div class="filter-bar">
+          <input type="text" id="orderSearch" placeholder="🔍  Search order #, customer, city..." oninput="renderOrdersTable()"/>
+          <select id="orderSort" onchange="renderOrdersTable()">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="high">Highest Amount</option>
+            <option value="low">Lowest Amount</option>
+          </select>
+          <button class="filter-btn" onclick="renderOrdersTable()"><i class="fas fa-filter"></i> Filter</button>
+        </div>
+
+        <div class="panel-body" style="overflow-x:auto;">
+          <div id="ordersTableWrap"><div class="loading-state"><i class="fas fa-spinner fa-spin"></i>Loading orders...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ PRODUCTS PAGE ═══════ -->
+    <div class="page" id="page-products">
+      <div class="panel">
+        <div class="panel-head">
+          <h3><i class="fas fa-tags" style="color:var(--red);margin-right:8px"></i>Products</h3>
+          <button class="topbar-btn red" onclick="openAddProduct()"><i class="fas fa-plus"></i> Add Product</button>
+        </div>
+        <!-- Filter -->
+        <div class="filter-bar">
+          <input type="text" id="productSearch" placeholder="🔍  Search products..." oninput="renderProductsGrid()"/>
+          <select id="productCatFilter" onchange="renderProductsGrid()">
+            <option value="">All Categories</option>
+          </select>
+          <select id="productStockFilter" onchange="renderProductsGrid()">
+            <option value="">All Stock</option>
+            <option value="in">In Stock</option>
+            <option value="low">Low Stock (&lt;5)</option>
+            <option value="out">Out of Stock</option>
+          </select>
+        </div>
+        <div id="productsGridWrap"><div class="loading-state"><i class="fas fa-spinner fa-spin"></i>Loading products...</div></div>
+      </div>
+    </div>
+
+  </div><!-- /admin-content -->
+</div><!-- /admin-main -->
+
+<!-- ── MODALS ── -->
+
+<!-- Order Detail Modal -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="orderModalTitle">Order Details</h3>
+      <button class="modal-close" onclick="closeModal('orderModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="orderModalBody"></div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal('orderModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit Product Modal -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="productModalTitle">Add Product</h3>
+      <button class="modal-close" onclick="closeModal('productModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Product Name *</label>
+          <input type="text" id="pName" placeholder="e.g. Samsung Galaxy S24"/>
+        </div>
+        <div class="form-group">
+          <label>Category *</label>
+          <select id="pCategory">
+            <option value="">Select category</option>
+            <option>Smartphones</option>
+            <option>Laptops</option>
+            <option>Tablets</option>
+            <option>Headphones</option>
+            <option>Audio</option>
+            <option>Cameras</option>
+            <option>Gaming</option>
+            <option>Wearables</option>
+            <option>Monitors</option>
+            <option>Furniture</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Price ($) *</label>
+          <input type="number" id="pPrice" placeholder="0.00" min="0" step="0.01"/>
+        </div>
+        <div class="form-group">
+          <label>Old Price ($)</label>
+          <input type="number" id="pOldPrice" placeholder="0.00" min="0" step="0.01"/>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Stock Qty *</label>
+          <input type="number" id="pStock" placeholder="0" min="0"/>
+        </div>
+        <div class="form-group">
+          <label>Brand</label>
+          <input type="text" id="pBrand" placeholder="e.g. Samsung"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Image URL</label>
+        <input type="url" id="pImage" placeholder="https://..."/>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="pDesc" placeholder="Product description..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal('productModal')">Cancel</button>
+      <button class="btn-submit" id="productSubmitBtn" onclick="submitProduct()">
+        <i class="fas fa-save"></i> Save Product
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="admin-toast"></div>
+
+<!-- Scripts -->
+<script src="js/api.js"></script>
+<script src="js/admin.js"></script>
+
+</body>
+</html>

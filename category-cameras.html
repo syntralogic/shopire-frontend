@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SHOPIRE - Cameras</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="js/shopire-nav.js" defer></script>
+  <link rel="stylesheet" href="css/category-cameras.css"/>
+</head>
+<body>
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <i class="fas fa-chevron-right" style="font-size:10px"></i>
+  <a href="shop.html">Shop</a>
+  <i class="fas fa-chevron-right" style="font-size:10px"></i>
+  <span>Cameras</span>
+</div>
+
+<!-- HERO BANNER -->
+<div class="cat-hero">
+  <div class="cat-hero-emoji">📷</div>
+  <div class="cat-hero-text">
+    <div class="cat-hero-badge"><i class="fas fa-tag"></i> 4 Products Available</div>
+    <h1>Shop <span>Cameras</span></h1>
+    <p>Explore our handpicked selection of the best cameras products — top brands, best prices, fast delivery.</p>
+  </div>
+</div>
+
+<!-- PAGE LAYOUT -->
+<div class="page-layout">
+
+  <!-- SIDEBAR -->
+  <div class="page-sidebar">
+    <div class="sidebar-title">All Categories</div>
+    <ul>
+        <li><a href="category-smartphones.html"><span class="cat-emoji">📱</span>Smartphones</a></li>
+        <li><a href="category-laptops.html"><span class="cat-emoji">💻</span>Laptops</a></li>
+        <li><a href="category-headphones.html"><span class="cat-emoji">🎧</span>Headphones</a></li>
+        <li><a href="category-cameras.html" class="active"><span class="cat-emoji">📷</span>Cameras</a></li>
+        <li><a href="category-monitors.html"><span class="cat-emoji">🖥️</span>Monitors</a></li>
+        <li><a href="category-gaming.html"><span class="cat-emoji">🎮</span>Gaming</a></li>
+        <li><a href="category-wearables.html"><span class="cat-emoji">⌚</span>Wearables</a></li>
+        <li><a href="category-furniture.html"><span class="cat-emoji">🛋️</span>Furniture</a></li>
+        <li><a href="category-audio.html"><span class="cat-emoji">🔊</span>Audio & Speakers</a></li>
+        <li><a href="category-tablets.html"><span class="cat-emoji">📟</span>Tablets</a></li>
+    </ul>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="products-area">
+    <div class="area-header">
+      <div>
+        <div class="area-title">Cameras</div>
+        <div class="area-count">Showing 4 products</div>
+      </div>
+      <select class="sort-select">
+        <option>Default Sorting</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+        <option>Newest First</option>
+        <option>Best Rating</option>
+      </select>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- Product -->
+      <div class="product-card" onclick="window.location='product-detail.html'">
+        <div class="card-badge">-25%</div>
+        <div class="card-wish" onclick="event.stopPropagation();toggleWish(this)"><i class="far fa-heart"></i></div>
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&q=80" alt="Sony Alpha A7 IV"></div>
+        <div class="card-body">
+          <div class="card-cat">Cameras</div>
+          <div class="card-name">Sony Alpha A7 IV</div>
+          <div class="card-spec">33MP | 4K | Full Frame Mirrorless</div>
+          <div class="card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(4.9)</span></div>
+          <div class="card-price"><span class="price-now">$2499.00</span><span class="price-old">$3299.00</span></div>
+        </div>
+        <div class="card-actions">
+          <button class="btn-addcart" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+          <button class="btn-icon-sm" title="Quick View"><i class="fas fa-eye"></i></button>
+          <button class="btn-icon-sm" title="Wishlist" onclick="event.stopPropagation();"><i class="far fa-heart"></i></button>
+        </div>
+      </div>
+      <!-- Product -->
+      <div class="product-card" onclick="window.location='product-detail.html'">
+        <div class="card-badge">-23%</div>
+        <div class="card-wish" onclick="event.stopPropagation();toggleWish(this)"><i class="far fa-heart"></i></div>
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&q=80" alt="Canon EOS R6 Mark II"></div>
+        <div class="card-body">
+          <div class="card-cat">Cameras</div>
+          <div class="card-name">Canon EOS R6 Mark II</div>
+          <div class="card-spec">40MP | 6K RAW | IBIS</div>
+          <div class="card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(4.8)</span></div>
+          <div class="card-price"><span class="price-now">$2299.00</span><span class="price-old">$2999.00</span></div>
+        </div>
+        <div class="card-actions">
+          <button class="btn-addcart" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+          <button class="btn-icon-sm" title="Quick View"><i class="fas fa-eye"></i></button>
+          <button class="btn-icon-sm" title="Wishlist" onclick="event.stopPropagation();"><i class="far fa-heart"></i></button>
+        </div>
+      </div>
+      <!-- Product -->
+      <div class="product-card" onclick="window.location='product-detail.html'">
+        <div class="card-badge">-18%</div>
+        <div class="card-wish" onclick="event.stopPropagation();toggleWish(this)"><i class="far fa-heart"></i></div>
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1489875347897-49f64b51c1f8?w=400&q=80" alt="Nikon Z8"></div>
+        <div class="card-body">
+          <div class="card-cat">Cameras</div>
+          <div class="card-name">Nikon Z8</div>
+          <div class="card-spec">45.7MP | 8K | Professional</div>
+          <div class="card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(4.7)</span></div>
+          <div class="card-price"><span class="price-now">$3299.00</span><span class="price-old">$3999.00</span></div>
+        </div>
+        <div class="card-actions">
+          <button class="btn-addcart" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+          <button class="btn-icon-sm" title="Quick View"><i class="fas fa-eye"></i></button>
+          <button class="btn-icon-sm" title="Wishlist" onclick="event.stopPropagation();"><i class="far fa-heart"></i></button>
+        </div>
+      </div>
+      <!-- Product -->
+      <div class="product-card" onclick="window.location='product-detail.html'">
+        <div class="card-badge">-20%</div>
+        <div class="card-wish" onclick="event.stopPropagation();toggleWish(this)"><i class="far fa-heart"></i></div>
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1612432250417-921c869a7bef?w=400&q=80" alt="Fujifilm X-T5"></div>
+        <div class="card-body">
+          <div class="card-cat">Cameras</div>
+          <div class="card-name">Fujifilm X-T5</div>
+          <div class="card-spec">40MP APS-C | 6.2K | Retro Design</div>
+          <div class="card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(4.8)</span></div>
+          <div class="card-price"><span class="price-now">$1599.00</span><span class="price-old">$1999.00</span></div>
+        </div>
+        <div class="card-actions">
+          <button class="btn-addcart" onclick="event.stopPropagation();addCart(this)"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+          <button class="btn-icon-sm" title="Quick View"><i class="fas fa-eye"></i></button>
+          <button class="btn-icon-sm" title="Wishlist" onclick="event.stopPropagation();"><i class="far fa-heart"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Added to cart!</span></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-bottom">
+    <span>© 2025 SHOPIRE. All rights reserved.</span>
+    <div class="payment-icons">
+      <span>VISA</span><span>MASTERCARD</span><span>PAYPAL</span><span>STRIPE</span>
+    </div>
+  </div>
+</footer>
+  <script src="js/api.js"></script>
+  <script src="js/shopire-chat.js" defer></script>
+  <script src="js/category-cameras.js"></script>
+</body>
+</html>

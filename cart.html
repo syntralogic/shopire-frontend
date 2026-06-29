@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SHOPIRE - Shopping Cart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="js/shopire-nav.js" defer></script>
+  <link rel="stylesheet" href="css/cart.css"/>
+</head>
+<body>
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <i class="fas fa-chevron-right" style="font-size:10px"></i>
+  <span>Shopping Cart</span>
+</div>
+
+<!-- CHECKOUT STEPS -->
+<div class="steps-bar">
+  <div class="steps">
+    <div class="step active">
+      <div class="step-num">1</div>
+      <span>Cart</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <span>Checkout</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <span>Payment</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <span>Confirmed</span>
+    </div>
+  </div>
+</div>
+
+<!-- CART LAYOUT -->
+<div class="cart-layout">
+
+  <!-- CART MAIN -->
+  <div class="cart-main">
+    <div class="cart-header">
+      <div>
+        <div class="cart-title">Shopping Cart</div>
+        <div class="cart-count" id="cartCount">3 items in your cart</div>
+      </div>
+      <button class="clear-btn" onclick="clearCart()"><i class="fas fa-trash-alt"></i> Clear Cart</button>
+    </div>
+
+    <!-- CART ITEMS -->
+    <div class="cart-items" id="cartItems">
+
+      <!-- Item 1 -->
+      <div class="cart-item" id="item1">
+        <div class="item-img">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&q=80" alt="Headphones">
+        </div>
+        <div class="item-info">
+          <div class="item-cat">Audio</div>
+          <div class="item-name">JBL Wireless Headphones Pro Max</div>
+          <div class="item-variants">
+            <span class="item-variant">Color: Black</span>
+            <span class="item-variant">Size: Standard</span>
+          </div>
+        </div>
+        <div class="item-qty">
+          <button onclick="changeItemQty('item1', -1)">−</button>
+          <input type="number" id="qty-item1" value="1" min="1" onchange="updateTotal()">
+          <button onclick="changeItemQty('item1', 1)">+</button>
+        </div>
+        <div class="item-price-col">
+          <div class="item-unit-price">$69.99 each</div>
+          <div class="item-total" id="total-item1">$69.99</div>
+        </div>
+        <button class="item-remove" onclick="removeItem('item1')" title="Remove"><i class="fas fa-times"></i></button>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="cart-item" id="item2">
+        <div class="item-img">
+          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200&q=80" alt="Phone">
+        </div>
+        <div class="item-info">
+          <div class="item-cat">Smartphones</div>
+          <div class="item-name">Samsung Galaxy S24 Ultra 256GB</div>
+          <div class="item-variants">
+            <span class="item-variant">Color: Titanium Black</span>
+            <span class="item-variant">Storage: 256GB</span>
+          </div>
+        </div>
+        <div class="item-qty">
+          <button onclick="changeItemQty('item2', -1)">−</button>
+          <input type="number" id="qty-item2" value="1" min="1" onchange="updateTotal()">
+          <button onclick="changeItemQty('item2', 1)">+</button>
+        </div>
+        <div class="item-price-col">
+          <div class="item-unit-price">$999.00 each</div>
+          <div class="item-total" id="total-item2">$999.00</div>
+        </div>
+        <button class="item-remove" onclick="removeItem('item2')" title="Remove"><i class="fas fa-times"></i></button>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="cart-item" id="item3">
+        <div class="item-img">
+          <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=200&q=80" alt="Watch">
+        </div>
+        <div class="item-info">
+          <div class="item-cat">Wearables</div>
+          <div class="item-name">Apple Watch Series 9 GPS 45mm</div>
+          <div class="item-variants">
+            <span class="item-variant">Color: Midnight</span>
+            <span class="item-variant">Size: 45mm</span>
+          </div>
+        </div>
+        <div class="item-qty">
+          <button onclick="changeItemQty('item3', -1)">−</button>
+          <input type="number" id="qty-item3" value="1" min="1" onchange="updateTotal()">
+          <button onclick="changeItemQty('item3', 1)">+</button>
+        </div>
+        <div class="item-price-col">
+          <div class="item-unit-price">$399.00 each</div>
+          <div class="item-total" id="total-item3">$399.00</div>
+        </div>
+        <button class="item-remove" onclick="removeItem('item3')" title="Remove"><i class="fas fa-times"></i></button>
+      </div>
+
+    </div>
+
+    <!-- Empty Cart Message -->
+    <div class="empty-cart" id="emptyCart">
+      <div class="empty-icon">🛒</div>
+      <h3>Your Cart is Empty!</h3>
+      <p>Looks like you haven't added anything yet. Browse our amazing products!</p>
+      <a href="shop.html"><button class="btn-shop-now"><i class="fas fa-shopping-bag"></i> Continue Shopping</button></a>
+    </div>
+
+    <!-- COUPON -->
+    <div class="coupon-row">
+      <i class="fas fa-tag" style="color:var(--red);font-size:18px;"></i>
+      <input type="text" id="couponInput" placeholder="Enter coupon code (try: SAVE10)">
+      <span class="coupon-msg" id="couponMsg">✓ Coupon applied! 10% off</span>
+      <button class="btn-coupon" onclick="applyCoupon()">Apply Coupon</button>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div class="bottom-row">
+      <a href="shop.html"><button class="btn-continue"><i class="fas fa-arrow-left"></i> Continue Shopping</button></a>
+      <button class="btn-update" onclick="updateCart()"><i class="fas fa-sync-alt"></i> Update Cart</button>
+    </div>
+  </div>
+
+  <!-- ORDER SUMMARY -->
+  <div class="cart-summary">
+    <div class="summary-box">
+      <div class="summary-title">Order Summary</div>
+
+      <div class="summary-row">
+        <span>Subtotal (<span id="itemCount">3</span> items)</span>
+        <span id="subtotalVal">$1,467.99</span>
+      </div>
+      <div class="summary-row discount" id="discountRow" style="display:none;">
+        <span>Coupon Discount</span>
+        <span id="discountVal">− $146.80</span>
+      </div>
+      <div class="summary-row shipping-row">
+        <span>Shipping</span>
+        <span>FREE 🎉</span>
+      </div>
+      <div class="summary-row">
+        <span>Tax (8%)</span>
+        <span id="taxVal">$117.44</span>
+      </div>
+
+      <hr class="summary-divider">
+
+      <div class="summary-total">
+        <span>Total</span>
+        <span id="totalVal">$1,585.43</span>
+      </div>
+
+      <button class="btn-checkout" onclick="checkout()">
+        <i class="fas fa-lock"></i> Proceed to Checkout
+      </button>
+
+      <button class="btn-paypal">
+        <i class="fab fa-paypal"></i> Pay with PayPal
+      </button>
+
+      <div class="secure-note">
+        <i class="fas fa-shield-alt"></i>
+        <span>100% Secure & Encrypted Checkout</span>
+      </div>
+
+      <div class="payment-methods">
+        <span class="pay-icon">VISA</span>
+        <span class="pay-icon">MC</span>
+        <span class="pay-icon">PAYPAL</span>
+        <span class="pay-icon">STRIPE</span>
+        <span class="pay-icon">AMEX</span>
+      </div>
+    </div>
+
+    <!-- Shipping Estimator -->
+    <div class="shipping-calc">
+      <h4><i class="fas fa-shipping-fast" style="color:var(--red)"></i> Estimate Shipping</h4>
+      <select>
+        <option>Select Country</option>
+        <option>United States</option>
+        <option>United Kingdom</option>
+        <option>Canada</option>
+        <option>Australia</option>
+        <option>Pakistan</option>
+        <option>Germany</option>
+      </select>
+      <select>
+        <option>Select State / Province</option>
+        <option>New York</option>
+        <option>California</option>
+        <option>Texas</option>
+        <option>Florida</option>
+      </select>
+      <button>Calculate Shipping</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- YOU MAY ALSO LIKE -->
+<div class="also-like">
+  <h2 class="section-title">You May Also Like</h2>
+  <div class="also-grid">
+    <div class="mini-card">
+      <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&q=80" alt="Laptop">
+      <div class="mini-card-body">
+        <div class="mini-cat">Laptops</div>
+        <div class="mini-name">MacBook Pro 14" M3</div>
+        <div><span class="mini-price">$1,699.00</span><span class="mini-old">$1,999.00</span></div>
+      </div>
+      <button class="btn-mini-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+    </div>
+    <div class="mini-card">
+      <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=300&q=80" alt="Camera">
+      <div class="mini-card-body">
+        <div class="mini-cat">Cameras</div>
+        <div class="mini-name">Sony Alpha A7 IV</div>
+        <div><span class="mini-price">$2,499.00</span><span class="mini-old">$3,299.00</span></div>
+      </div>
+      <button class="btn-mini-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+    </div>
+    <div class="mini-card">
+      <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300&q=80" alt="Speaker">
+      <div class="mini-card-body">
+        <div class="mini-cat">Audio</div>
+        <div class="mini-name">Bose SoundLink Max</div>
+        <div><span class="mini-price">$319.00</span><span class="mini-old">$399.00</span></div>
+      </div>
+      <button class="btn-mini-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+    </div>
+    <div class="mini-card">
+      <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=300&q=80" alt="Monitor">
+      <div class="mini-card-body">
+        <div class="mini-cat">Monitors</div>
+        <div class="mini-name">LG UltraGear 27" 4K</div>
+        <div><span class="mini-price">$549.00</span><span class="mini-old">$799.00</span></div>
+      </div>
+      <button class="btn-mini-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-bottom">
+    <span>© 2025 SHOPIRE. All rights reserved.</span>
+    <div class="payment-icons">
+      <span>VISA</span><span>MASTERCARD</span><span>PAYPAL</span><span>STRIPE</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+  <script src="js/shopire-chat.js" defer></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SHOPIRE - Best Electronics Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="js/shopire-nav.js" defer></script>
+  <link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+
+<!-- MAIN LAYOUT: SIDEBAR + HERO -->
+<div class="main-layout">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <ul>
+      <li><a href="#" class="active"><i class="fas fa-hand-paper"></i> All</a></li>
+      <li><a href="#"><i class="fas fa-bell"></i> Best Seller</a></li>
+      <li><a href="#"><i class="fas fa-clock"></i> Deal of day</a></li>
+      <li><a href="#"><i class="fas fa-diamond"></i> Featured</a></li>
+      <li><a href="#"><i class="fas fa-bed"></i> Furniture</a></li>
+      <li><a href="#"><i class="fas fa-futbol"></i> Latest</a></li>
+      <li><a href="#"><i class="fas fa-gift"></i> Offers</a></li>
+      <li><a href="#"><i class="far fa-heart"></i> Product</a></li>
+      <li><a href="#" class="more-cat"><i class="fas fa-plus"></i> More Category</a></li>
+    </ul>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero-area">
+    <div class="hero-circle"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-bolt"></i> Flat 30% Discount</div>
+      <h1>Best Ear<br>Wireless<br>Headphones</h1>
+      <p>New Electronics Deals Added! Explore the latest discounts on cameras, wearables, and smart home devices.</p>
+      <div class="hero-actions">
+        <a href="shop.html"><button class="btn-shop">Shop Now</button></a>
+        <div class="btn-video">
+          <div class="play-btn"><i class="fas fa-play"></i></div>
+          <span>Watch Video</span>
+        </div>
+      </div>
+    </div>
+    <img class="hero-image" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80" alt="Wireless Headphones" style="width:460px;position:absolute;right:30px;bottom:0;object-fit:contain;"/>
+  </div>
+</div>
+
+<!-- PROMO STRIP -->
+<div class="promo-strip">
+  <div class="promo-item"><i class="fas fa-shipping-fast"></i><span>Free Shipping Over $50</span></div>
+  <div class="promo-item"><i class="fas fa-undo"></i><span>30 Day Returns</span></div>
+  <div class="promo-item"><i class="fas fa-shield-alt"></i><span>Secure Checkout</span></div>
+  <div class="promo-item"><i class="fas fa-headset"></i><span>24/7 Support</span></div>
+  <div class="promo-item"><i class="fas fa-tags"></i><span>Best Price Guarantee</span></div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="section" style="background:#fafafa;">
+  <div class="section-header">
+    <h2 class="section-title">Shop By Category</h2>
+    <a href="shop.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card"><div class="cat-icon">📱</div><div class="cat-name">Smartphones</div><div class="cat-count">120+ items</div></div>
+    <div class="cat-card"><div class="cat-icon">💻</div><div class="cat-name">Laptops</div><div class="cat-count">80+ items</div></div>
+    <div class="cat-card"><div class="cat-icon">🎧</div><div class="cat-name">Headphones</div><div class="cat-count">65+ items</div></div>
+    <div class="cat-card"><div class="cat-icon">📷</div><div class="cat-name">Cameras</div><div class="cat-count">45+ items</div></div>
+    <div class="cat-card"><div class="cat-icon">🖥️</div><div class="cat-name">Monitors</div><div class="cat-count">50+ items</div></div>
+    <div class="cat-card"><div class="cat-icon">🛋️</div><div class="cat-name">Furniture</div><div class="cat-count">90+ items</div></div>
+  </div>
+</div>
+
+<!-- FEATURED PRODUCTS -->
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">Featured Products</h2>
+    <a href="shop.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+  </div>
+  <div class="products-grid">
+
+    <!-- Product 1 -->
+    <div class="product-card" onclick="window.location.href='product-detail.html?id=8'" style="cursor:pointer">
+      <div class="card-badge">-30%</div>
+      <div class="card-wish" onclick="event.stopPropagation(); toggleWishlist(this, 8)"><i class="far fa-heart"></i></div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&q=80" alt="Headphones"></div>
+      <div class="card-body">
+        <div class="card-cat">Audio</div>
+        <div class="card-name"><a href="product-detail.html?id=8" onclick="event.stopPropagation()">JBL Wireless Headphones Pro</a></div>
+        <div class="card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(4.5)</span></div>
+        <div class="card-price"><span class="price-now">$69.99</span><span class="price-old">$99.99</span></div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-addcart" onclick="event.stopPropagation(); addToCart(8, this)">Add to Cart</button>
+        <button class="btn-icon-sm" onclick="event.stopPropagation(); window.location.href='product-detail.html?id=8'"><i class="fas fa-eye"></i></button>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card" onclick="window.location.href='product-detail.html?id=2'" style="cursor:pointer">
+      <div class="card-badge">NEW</div>
+      <div class="card-wish" onclick="event.stopPropagation(); toggleWishlist(this, 2)"><i class="far fa-heart"></i></div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300&q=80" alt="Phone"></div>
+      <div class="card-body">
+        <div class="card-cat">Smartphones</div>
+        <div class="card-name">Samsung Galaxy S24 Ultra</div>
+        <div class="card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(5.0)</span></div>
+        <div class="card-price"><span class="price-now">$999.00</span><span class="price-old">$1199.00</span></div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-addcart" onclick="event.stopPropagation(); addToCart(2, this)">Add to Cart</button>
+        <button class="btn-icon-sm" onclick="event.stopPropagation(); window.location.href='product-detail.html?id=2'"><i class="fas fa-eye"></i></button>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card" onclick="window.location.href='product-detail.html?id=4'" style="cursor:pointer">
+      <div class="card-badge">-15%</div>
+      <div class="card-wish" onclick="event.stopPropagation(); toggleWishlist(this, 4)"><i class="far fa-heart"></i></div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&q=80" alt="Laptop"></div>
+      <div class="card-body">
+        <div class="card-cat">Laptops</div>
+        <div class="card-name">MacBook Pro 14" M3 Chip</div>
+        <div class="card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(4.9)</span></div>
+        <div class="card-price"><span class="price-now">$1699.00</span><span class="price-old">$1999.00</span></div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-addcart" onclick="event.stopPropagation(); addToCart(4, this)">Add to Cart</button>
+        <button class="btn-icon-sm" onclick="event.stopPropagation(); window.location.href='product-detail.html?id=4'"><i class="fas fa-eye"></i></button>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product-card" onclick="window.location.href='product-detail.html?id=10'" style="cursor:pointer">
+      <div class="card-badge">-25%</div>
+      <div class="card-wish" onclick="event.stopPropagation(); toggleWishlist(this, 10)"><i class="far fa-heart"></i></div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=300&q=80" alt="Camera"></div>
+      <div class="card-body">
+        <div class="card-cat">Cameras</div>
+        <div class="card-name">Sony Alpha A7 IV Mirrorless</div>
+        <div class="card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(4.7)</span></div>
+        <div class="card-price"><span class="price-now">$2499.00</span><span class="price-old">$3299.00</span></div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-addcart" onclick="event.stopPropagation(); addToCart(10, this)">Add to Cart</button>
+        <button class="btn-icon-sm" onclick="event.stopPropagation(); window.location.href='product-detail.html?id=10'"><i class="fas fa-eye"></i></button>
+      </div>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="product-card" onclick="window.location.href='product-detail.html?id=14'" style="cursor:pointer">
+      <div class="card-badge">HOT</div>
+      <div class="card-wish" onclick="event.stopPropagation(); toggleWishlist(this, 14)"><i class="far fa-heart"></i></div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300&q=80" alt="Watch"></div>
+      <div class="card-body">
+        <div class="card-cat">Wearables</div>
+        <div class="card-name">Apple Watch Series 9 GPS</div>
+        <div class="card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(4.8)</span></div>
+        <div class="card-price"><span class="price-now">$399.00</span><span class="price-old">$499.00</span></div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-addcart" onclick="event.stopPropagation(); addToCart(14, this)">Add to Cart</button>
+        <button class="btn-icon-sm" onclick="event.stopPropagation(); window.location.href='product-detail.html?id=14'"><i class="fas fa-eye"></i></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DEAL OF THE DAY -->
+<div class="deal-section">
+  <div class="section-header">
+    <h2 class="section-title">⚡ Deal of The Day</h2>
+    <a href="shop.html" class="view-all" style="color:#f87171;">View All <i class="fas fa-arrow-right"></i></a>
+  </div>
+  <div class="deal-grid">
+    <!-- Featured Deal -->
+    <div class="deal-featured">
+      <div class="deal-featured-img">🎧</div>
+      <span class="deal-tag">TODAY'S DEAL</span>
+      <h3>Sony WH-1000XM5<br>Noise Cancelling</h3>
+      <p style="color:#aaa;font-size:13px;margin:8px 0;">Premium wireless headphones with industry-leading noise cancellation.</p>
+      <div class="deal-timer" id="timer">
+        <div class="timer-box"><span class="timer-num" id="hours">08</span><span class="timer-label">Hours</span></div>
+        <div class="timer-box"><span class="timer-num" id="mins">45</span><span class="timer-label">Mins</span></div>
+        <div class="timer-box"><span class="timer-num" id="secs">30</span><span class="timer-label">Secs</span></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <span class="deal-price-big">$279.99</span>
+        <span style="color:#666;text-decoration:line-through;font-size:14px;">$399.99</span>
+      </div>
+      <button class="btn-deal">Grab the Deal</button>
+    </div>
+
+    <!-- Small Deals -->
+    <div class="deal-small">
+      <div class="deal-small-img">💻</div>
+      <h4>Dell XPS 13 Laptop</h4>
+      <p style="color:#888;font-size:12px;margin-bottom:8px;">Intel i7 | 16GB RAM | 512GB SSD</p>
+      <span class="d-price">$899.00</span> <span class="d-old">$1299.00</span>
+      <div class="d-bar"><div class="d-bar-fill" style="width:68%"></div></div>
+      <div class="d-sold">68% sold — Hurry up!</div>
+      <button class="btn-deal" style="margin-top:10px;padding:8px 18px;font-size:12px;">Add to Cart</button>
+    </div>
+
+    <div class="deal-small">
+      <div class="deal-small-img">📱</div>
+      <h4>iPhone 15 Pro Max</h4>
+      <p style="color:#888;font-size:12px;margin-bottom:8px;">256GB | Titanium | A17 Pro</p>
+      <span class="d-price">$1099.00</span> <span class="d-old">$1299.00</span>
+      <div class="d-bar"><div class="d-bar-fill" style="width:82%"></div></div>
+      <div class="d-sold">82% sold — Almost gone!</div>
+      <button class="btn-deal" style="margin-top:10px;padding:8px 18px;font-size:12px;">Add to Cart</button>
+    </div>
+
+    <div class="deal-small">
+      <div class="deal-small-img">⌚</div>
+      <h4>Garmin Fenix 7 Pro</h4>
+      <p style="color:#888;font-size:12px;margin-bottom:8px;">Solar GPS Smartwatch</p>
+      <span class="d-price">$549.00</span> <span class="d-old">$799.00</span>
+      <div class="d-bar"><div class="d-bar-fill" style="width:45%"></div></div>
+      <div class="d-sold">45% sold — Still available</div>
+      <button class="btn-deal" style="margin-top:10px;padding:8px 18px;font-size:12px;">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- BEST SELLERS -->
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">Best Sellers</h2>
+    <a href="shop.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="card-badge">BEST</div>
+      <div class="card-wish" onclick="toggleWishlist(this, 0)"><i class="far fa-heart"></i></div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=300&q=80" alt="Perfume"></div>
+      <div class="card-body">
+        <div class="card-cat">Lifestyle</div>
+        <div class="card-name">Chanel Bleu de Chanel EDT</div>
+        <div class="card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(5.0)</span></div>
+        <div class="card-price"><span class="price-now">$89.99</span><span class="price-old">$120.00</span></div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-addcart" onclick="window.location.href='shop.html'">Add to Cart</button>
+        <button class="btn-icon-sm"><i class="fas fa-eye"></i></button>
+        <button class="btn-icon-sm"><i class="fas fa-exchange-alt"></i></button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-badge">-20%</div>
+      <div class="card-wish" onclick="event.stopPropagation(); toggleWishlist(this, 20)"><i class="far fa-heart"></i></div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300&q=80" alt="Speaker"></div>
+      <div class="card-body">
+        <div class="card-cat">Audio</div>
+        <div class="card-name">Bose SoundLink Max Speaker</div>
+        <div class="card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(4.6)</span></div>
+        <div class="card-price"><span class="price-now">$319.00</span><span class="price-old">$399.00</span></div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-addcart" onclick="event.stopPropagation(); addToCart(20, this)">Add to Cart</button>
+        <button class="btn-icon-sm"><i class="fas fa-eye"></i></button>
+        <button class="btn-icon-sm"><i class="fas fa-exchange-alt"></i></button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-badge">NEW</div>
+      <div class="card-wish" onclick="event.stopPropagation(); toggleWishlist(this, 6)"><i class="far fa-heart"></i></div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=300&q=80" alt="Gaming Laptop"></div>
+      <div class="card-body">
+        <div class="card-cat">Gaming</div>
+        <div class="card-name">ASUS ROG Strix G16 Gaming</div>
+        <div class="card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(4.9)</span></div>
+        <div class="card-price"><span class="price-now">$1299.00</span><span class="price-old">$1599.00</span></div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-addcart" onclick="event.stopPropagation(); addToCart(6, this)">Add to Cart</button>
+        <button class="btn-icon-sm"><i class="fas fa-eye"></i></button>
+        <button class="btn-icon-sm"><i class="fas fa-exchange-alt"></i></button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-badge">-35%</div>
+      <div class="card-wish" onclick="event.stopPropagation(); toggleWishlist(this, 14)"><i class="far fa-heart"></i></div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=300&q=80" alt="Watch"></div>
+      <div class="card-body">
+        <div class="card-cat">Watches</div>
+        <div class="card-name">Rolex Submariner Date</div>
+        <div class="card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(5.0)</span></div>
+        <div class="card-price"><span class="price-now">$7999.00</span><span class="price-old">$12000.00</span></div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-addcart" onclick="event.stopPropagation(); addToCart(14, this)">Add to Cart</button>
+        <button class="btn-icon-sm"><i class="fas fa-eye"></i></button>
+        <button class="btn-icon-sm"><i class="fas fa-exchange-alt"></i></button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-badge">HOT</div>
+      <div class="card-wish" onclick="event.stopPropagation(); toggleWishlist(this, 12)"><i class="far fa-heart"></i></div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=300&q=80" alt="Monitor"></div>
+      <div class="card-body">
+        <div class="card-cat">Monitors</div>
+        <div class="card-name">LG UltraGear 27" 4K 144Hz</div>
+        <div class="card-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(4.7)</span></div>
+        <div class="card-price"><span class="price-now">$549.00</span><span class="price-old">$799.00</span></div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-addcart" onclick="event.stopPropagation(); addToCart(12, this)">Add to Cart</button>
+        <button class="btn-icon-sm"><i class="fas fa-eye"></i></button>
+        <button class="btn-icon-sm"><i class="fas fa-exchange-alt"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="newsletter">
+  <div class="nl-left">
+    <h2>Subscribe & Get 10% Off Your First Order</h2>
+    <p>Join 50,000+ shoppers and get exclusive deals straight to your inbox.</p>
+  </div>
+  <div class="nl-form">
+    <input type="email" placeholder="Enter your email address...">
+    <button>Subscribe Now</button>
+  </div>
+</div>
+
+<!-- BRANDS -->
+<div class="brands-section">
+  <div class="section-header">
+    <h2 class="section-title">Our Top Brands</h2>
+  </div>
+  <div class="brands-grid">
+    <span class="brand-item">SAMSUNG</span>
+    <span class="brand-item">APPLE</span>
+    <span class="brand-item">SONY</span>
+    <span class="brand-item">DELL</span>
+    <span class="brand-item">LG</span>
+    <span class="brand-item">ASUS</span>
+    <span class="brand-item">JBL</span>
+    <span class="brand-item">BOSE</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="logo" style="color:white;margin-bottom:14px;">
+        <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+        SHOPIRE
+      </div>
+      <p>Your ultimate destination for electronics, gadgets, and lifestyle products. Quality guaranteed.</p>
+      <div class="footer-social">
+        <div class="social-btn"><i class="fab fa-facebook-f"></i></div>
+        <div class="social-btn"><i class="fab fa-twitter"></i></div>
+        <div class="social-btn"><i class="fab fa-instagram"></i></div>
+        <div class="social-btn"><i class="fab fa-youtube"></i></div>
+        <div class="social-btn"><i class="fab fa-tiktok"></i></div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Customer Service</h4>
+      <ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Refund Policy</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Order Tracking</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <p><i class="fas fa-map-marker-alt" style="color:var(--red);margin-right:6px"></i> 123 Market St, New York, USA</p>
+      <br>
+      <p><i class="fas fa-phone" style="color:var(--red);margin-right:6px"></i> +88 (9800) 6802</p>
+      <br>
+      <p><i class="fas fa-envelope" style="color:var(--red);margin-right:6px"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b3c0c6c3c3dcc1c7f3c0dbdcc3dac1d69dd0dcde">[email&#160;protected]</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 SHOPIRE. All rights reserved.</span>
+    <div class="payment-icons">
+      <span>VISA</span>
+      <span>MASTERCARD</span>
+      <span>PAYPAL</span>
+      <span>STRIPE</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+

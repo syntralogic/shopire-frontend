@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SHOPIRE - JBL Wireless Headphones Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="js/shopire-nav.js" defer></script>
+  <link rel="stylesheet" href="css/product-detail.css"/>
+</head>
+<body>
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <i class="fas fa-chevron-right" style="font-size:10px"></i>
+  <a href="shop.html">Shop</a>
+  <i class="fas fa-chevron-right" style="font-size:10px"></i>
+  <a href="#">Audio</a>
+  <i class="fas fa-chevron-right" style="font-size:10px"></i>
+  <span>JBL Wireless Headphones Pro</span>
+</div>
+
+<!-- PRODUCT DETAIL -->
+<div class="product-section">
+
+  <!-- IMAGE GALLERY -->
+  <div class="gallery">
+    <div class="thumbs">
+      <div class="thumb active" onclick="changeImg(this, 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80')">
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=150&q=80" alt="">
+      </div>
+      <div class="thumb" onclick="changeImg(this, 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=600&q=80')">
+        <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=150&q=80" alt="">
+      </div>
+      <div class="thumb" onclick="changeImg(this, 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=600&q=80')">
+        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=150&q=80" alt="">
+      </div>
+      <div class="thumb" onclick="changeImg(this, 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=600&q=80')">
+        <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=150&q=80" alt="">
+      </div>
+    </div>
+    <div class="main-img">
+      <div class="img-badge">-30% OFF</div>
+      <img id="mainImg" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80" alt="JBL Wireless Headphones">
+      <button class="zoom-btn"><i class="fas fa-search-plus"></i></button>
+    </div>
+  </div>
+
+  <!-- PRODUCT INFO -->
+  <div class="product-info">
+    <div class="prod-cat"><i class="fas fa-tag"></i> Audio / Headphones</div>
+    <h1 class="prod-title">JBL Wireless Headphones<br>Pro Max Edition</h1>
+
+    <div class="prod-rating">
+      <div class="stars">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+      </div>
+      <span class="rating-text">4.5 / 5.0 &nbsp;|&nbsp; <a href="#reviews">128 Reviews</a> &nbsp;|&nbsp; <span style="color:#10b981;font-weight:600">✓ Verified</span></span>
+    </div>
+
+    <div class="prod-price">
+      <span class="price-main">$69.99</span>
+      <span class="price-strike">$99.99</span>
+      <span class="price-save">You Save $30!</span>
+    </div>
+
+    <div class="stock-bar">
+      <div class="stock-dot"></div>
+      <span class="stock-text">In Stock</span>
+      <span class="stock-count">— Only 14 left!</span>
+    </div>
+
+    <p class="prod-desc">
+      Experience premium wireless audio with the JBL Pro Max Edition. Featuring 40-hour battery life, active noise cancellation, and crystal-clear sound. Built-in microphone for hands-free calls with foldable design for easy portability. Compatible with all Bluetooth devices.
+    </p>
+
+    <!-- Color -->
+    <div class="option-group">
+      <div class="option-label">Color: <span id="selectedColor">Midnight Black</span></div>
+      <div class="color-opts">
+        <div class="color-opt active" style="background:#111" title="Midnight Black" onclick="selectColor(this,'Midnight Black')"></div>
+        <div class="color-opt" style="background:#fff;border:2px solid #ddd" title="Pearl White" onclick="selectColor(this,'Pearl White')"></div>
+        <div class="color-opt" style="background:#ef4444" title="Coral Red" onclick="selectColor(this,'Coral Red')"></div>
+        <div class="color-opt" style="background:#3b82f6" title="Ocean Blue" onclick="selectColor(this,'Ocean Blue')"></div>
+        <div class="color-opt" style="background:#8b5cf6" title="Violet" onclick="selectColor(this,'Violet')"></div>
+      </div>
+    </div>
+
+    <!-- Size -->
+    <div class="option-group">
+      <div class="option-label">Size: <span id="selectedSize">Standard</span></div>
+      <div class="size-opts">
+        <button class="size-opt active" onclick="selectSize(this)">Standard</button>
+        <button class="size-opt" onclick="selectSize(this)">Large</button>
+        <button class="size-opt" onclick="selectSize(this)">XL</button>
+      </div>
+    </div>
+
+    <!-- Qty + Add to Cart -->
+    <div class="add-cart-row">
+      <div class="qty-box">
+        <button onclick="changeQty(-1)">−</button>
+        <input type="number" id="qty" value="1" min="1">
+        <button onclick="changeQty(1)">+</button>
+      </div>
+      <button class="btn-cart" onclick="addToCart()">
+        <i class="fas fa-shopping-cart"></i> Add to Cart
+      </button>
+      <button class="btn-wish" title="Wishlist" onclick="toggleWish(this)"><i class="far fa-heart"></i></button>
+      <button class="btn-compare" title="Compare"><i class="fas fa-exchange-alt"></i></button>
+    </div>
+
+    <!-- Trust Badges -->
+    <div class="trust-badges">
+      <div class="trust-item"><i class="fas fa-shipping-fast"></i> Free Shipping</div>
+      <div class="trust-item"><i class="fas fa-undo"></i> 30-Day Returns</div>
+      <div class="trust-item"><i class="fas fa-shield-alt"></i> 2 Year Warranty</div>
+      <div class="trust-item"><i class="fas fa-lock"></i> Secure Payment</div>
+    </div>
+
+    <!-- Meta -->
+    <div class="prod-meta">
+      <div><strong>SKU:</strong> JBL-PRO-MAX-001</div>
+      <div><strong>Brand:</strong> <a href="#">JBL</a></div>
+      <div><strong>Category:</strong> <a href="shop.html">Audio, Headphones</a></div>
+      <div><strong>Tags:</strong> <a href="#">Wireless</a>, <a href="#">Noise Cancelling</a>, <a href="#">Bluetooth</a></div>
+      <div style="display:flex;gap:12px;margin-top:8px;align-items:center;">
+        <strong>Share:</strong>
+        <a href="#" style="color:#1877f2;font-size:18px"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" style="color:#1da1f2;font-size:18px"><i class="fab fa-twitter"></i></a>
+        <a href="#" style="color:#e1306c;font-size:18px"><i class="fab fa-instagram"></i></a>
+        <a href="#" style="color:#25d366;font-size:18px"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-section">
+  <div class="tabs-nav">
+    <button class="tab-btn active" onclick="openTab(event,'description')">Description</button>
+    <button class="tab-btn" onclick="openTab(event,'specifications')">Specifications</button>
+    <button class="tab-btn" onclick="openTab(event,'reviews')" id="reviews">Reviews (128)</button>
+    <button class="tab-btn" onclick="openTab(event,'shipping')">Shipping & Returns</button>
+  </div>
+
+  <!-- Description -->
+  <div class="tab-content active" id="description">
+    <div class="desc-grid">
+      <div class="desc-text">
+        <p>The JBL Pro Max Edition wireless headphones redefine audio excellence. Whether you're commuting, working, or relaxing, these headphones deliver an immersive sound experience that sets a new benchmark in personal audio.</p>
+        <p>The advanced Active Noise Cancellation (ANC) technology filters out ambient noise, letting you focus on what matters. With up to 40 hours of battery life, you can enjoy uninterrupted music throughout your day.</p>
+        <p>The ergonomic over-ear design ensures maximum comfort even during extended listening sessions. Premium memory foam ear cushions adapt to your ear shape for a perfect seal and superior comfort.</p>
+      </div>
+      <div class="desc-features">
+        <div class="feat-item">
+          <div class="feat-icon"><i class="fas fa-bluetooth-b"></i></div>
+          <div class="feat-text"><strong>Bluetooth 5.3</strong><span>Stable connection up to 30 meters range</span></div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-icon"><i class="fas fa-battery-full"></i></div>
+          <div class="feat-text"><strong>40-Hour Battery</strong><span>Quick charge: 10 min = 3 hours playback</span></div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-icon"><i class="fas fa-volume-mute"></i></div>
+          <div class="feat-text"><strong>Active Noise Cancellation</strong><span>Up to 30dB noise reduction</span></div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-icon"><i class="fas fa-microphone"></i></div>
+          <div class="feat-text"><strong>Dual Microphone</strong><span>Crystal clear hands-free calling</span></div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-icon"><i class="fas fa-headphones"></i></div>
+          <div class="feat-text"><strong>40mm Drivers</strong><span>Deep bass, clear mids, crisp highs</span></div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-icon"><i class="fas fa-weight-hanging"></i></div>
+          <div class="feat-text"><strong>Lightweight Design</strong><span>Only 250g — foldable & travel-ready</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Specifications -->
+  <div class="tab-content" id="specifications">
+    <table class="specs-table">
+      <tr><td>Brand</td><td>JBL</td></tr>
+      <tr><td>Model</td><td>Pro Max Edition</td></tr>
+      <tr><td>Driver Size</td><td>40mm Dynamic</td></tr>
+      <tr><td>Frequency Response</td><td>20Hz – 20,000Hz</td></tr>
+      <tr><td>Bluetooth Version</td><td>5.3</td></tr>
+      <tr><td>Wireless Range</td><td>Up to 30 meters</td></tr>
+      <tr><td>Battery Life</td><td>40 hours (ANC off), 30 hours (ANC on)</td></tr>
+      <tr><td>Charging Time</td><td>2 hours (full charge)</td></tr>
+      <tr><td>Charging Port</td><td>USB-C</td></tr>
+      <tr><td>Noise Cancellation</td><td>Active Noise Cancellation (ANC)</td></tr>
+      <tr><td>Microphone</td><td>Built-in Dual Microphone</td></tr>
+      <tr><td>Controls</td><td>Touch Controls + Physical Buttons</td></tr>
+      <tr><td>Weight</td><td>250g</td></tr>
+      <tr><td>Colors Available</td><td>Black, White, Red, Blue, Violet</td></tr>
+      <tr><td>Compatibility</td><td>iOS, Android, Windows, Mac</td></tr>
+      <tr><td>Warranty</td><td>2 Years</td></tr>
+      <tr><td>In the Box</td><td>Headphones, USB-C Cable, 3.5mm Cable, Carrying Case, Manual</td></tr>
+    </table>
+  </div>
+
+  <!-- Reviews -->
+  <div class="tab-content" id="reviews-tab">
+    <div class="reviews-summary">
+      <div class="rating-big">
+        <div class="num">4.5</div>
+        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+        <p>Based on 128 reviews</p>
+      </div>
+      <div class="rating-bars">
+        <div class="r-bar"><span>5★</span><div class="r-bar-track"><div class="r-bar-fill" style="width:72%"></div></div><span>72%</span></div>
+        <div class="r-bar"><span>4★</span><div class="r-bar-track"><div class="r-bar-fill" style="width:18%"></div></div><span>18%</span></div>
+        <div class="r-bar"><span>3★</span><div class="r-bar-track"><div class="r-bar-fill" style="width:6%"></div></div><span>6%</span></div>
+        <div class="r-bar"><span>2★</span><div class="r-bar-track"><div class="r-bar-fill" style="width:3%"></div></div><span>3%</span></div>
+        <div class="r-bar"><span>1★</span><div class="r-bar-track"><div class="r-bar-fill" style="width:1%"></div></div><span>1%</span></div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-avatar">A</div>
+        <div>
+          <div class="reviewer-name">Ahmed Khan <span style="font-size:11px;color:#10b981;font-weight:600">✓ Verified Buyer</span></div>
+          <div class="reviewer-date">March 2, 2025</div>
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        </div>
+      </div>
+      <div class="review-text">Absolutely love these headphones! The noise cancellation is incredible — I work in a noisy office and it completely blocks everything out. Battery lasts forever, sound quality is top-notch. Highly recommend!</div>
+      <div class="review-helpful">Helpful? <button>👍 Yes (24)</button><button>👎 No (1)</button></div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-avatar" style="background:#7c3aed">S</div>
+        <div>
+          <div class="reviewer-name">Sara Malik <span style="font-size:11px;color:#10b981;font-weight:600">✓ Verified Buyer</span></div>
+          <div class="reviewer-date">February 20, 2025</div>
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+        </div>
+      </div>
+      <div class="review-text">Great value for money! Comfortable to wear for long sessions, sound is clear and bass is punchy. Only minor issue is the ear cushions feel slightly warm after 2+ hours. Overall very happy with the purchase.</div>
+      <div class="review-helpful">Helpful? <button>👍 Yes (18)</button><button>👎 No (2)</button></div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-avatar" style="background:#f59e0b">M</div>
+        <div>
+          <div class="reviewer-name">Muhammad Ali</div>
+          <div class="reviewer-date">January 15, 2025</div>
+          <div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+        </div>
+      </div>
+      <div class="review-text">Ordered these for my daily commute and they've been a game changer. Bluetooth connects instantly, call quality is excellent, and they fold up nicely into the included case. Shipping was super fast too!</div>
+      <div class="review-helpful">Helpful? <button>👍 Yes (12)</button><button>👎 No (0)</button></div>
+    </div>
+  </div>
+
+  <!-- Shipping -->
+  <div class="tab-content" id="shipping">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+      <div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;margin-bottom:14px;">Shipping Information</h3>
+        <table class="specs-table">
+          <tr><td>Standard Shipping</td><td>5-7 business days — FREE over $50</td></tr>
+          <tr><td>Express Shipping</td><td>2-3 business days — $9.99</td></tr>
+          <tr><td>Overnight</td><td>Next business day — $19.99</td></tr>
+          <tr><td>International</td><td>10-21 business days — $14.99</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;margin-bottom:14px;">Returns Policy</h3>
+        <table class="specs-table">
+          <tr><td>Return Window</td><td>30 days from delivery date</td></tr>
+          <tr><td>Condition</td><td>Unused, original packaging</td></tr>
+          <tr><td>Refund</td><td>Full refund within 5-7 business days</td></tr>
+          <tr><td>How to Return</td><td>Contact <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0e7d7b7e7e617c7a4e7d66617e677c6b206d6163">[email&#160;protected]</a></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED PRODUCTS -->
+<div class="related-section">
+  <h2 class="section-title">You Might Also Like</h2>
+  <div class="related-grid">
+
+    <div class="product-card">
+      <div class="card-badge-r">-20%</div>
+      <div class="card-wish-r"><i class="far fa-heart"></i></div>
+      <div class="card-img-rel"><img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300&q=80" alt="Speaker"></div>
+      <div class="card-body-r">
+        <div class="card-cat-r">Audio</div>
+        <div class="card-name-r">Bose SoundLink Max Speaker</div>
+        <div class="card-rating-r"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+        <div class="card-price-r"><span class="price-now-r">$319.00</span><span class="price-old-r">$399.00</span></div>
+      </div>
+      <div class="card-actions-rel">
+        <button class="btn-addcart-r">Add to Cart</button>
+        <button class="btn-icon-r"><i class="fas fa-eye"></i></button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-badge-r" style="background:#f59e0b">HOT</div>
+      <div class="card-wish-r"><i class="far fa-heart"></i></div>
+      <div class="card-img-rel"><img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=300&q=80" alt="Watch"></div>
+      <div class="card-body-r">
+        <div class="card-cat-r">Wearables</div>
+        <div class="card-name-r">Apple Watch Series 9 GPS</div>
+        <div class="card-rating-r"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <div class="card-price-r"><span class="price-now-r">$399.00</span><span class="price-old-r">$499.00</span></div>
+      </div>
+      <div class="card-actions-rel">
+        <button class="btn-addcart-r">Add to Cart</button>
+        <button class="btn-icon-r"><i class="fas fa-eye"></i></button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-badge-r" style="background:#10b981">NEW</div>
+      <div class="card-wish-r"><i class="far fa-heart"></i></div>
+      <div class="card-img-rel"><img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=300&q=80" alt="Headset"></div>
+      <div class="card-body-r">
+        <div class="card-cat-r">Gaming</div>
+        <div class="card-name-r">Razer BlackShark V2 Headset</div>
+        <div class="card-rating-r"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+        <div class="card-price-r"><span class="price-now-r">$99.99</span><span class="price-old-r">$129.99</span></div>
+      </div>
+      <div class="card-actions-rel">
+        <button class="btn-addcart-r">Add to Cart</button>
+        <button class="btn-icon-r"><i class="fas fa-eye"></i></button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-badge-r">-25%</div>
+      <div class="card-wish-r"><i class="far fa-heart"></i></div>
+      <div class="card-img-rel"><img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&q=80" alt="Earbuds"></div>
+      <div class="card-body-r">
+        <div class="card-cat-r">Audio</div>
+        <div class="card-name-r">Sony WF-1000XM5 Earbuds</div>
+        <div class="card-rating-r"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <div class="card-price-r"><span class="price-now-r">$224.99</span><span class="price-old-r">$299.99</span></div>
+      </div>
+      <div class="card-actions-rel">
+        <button class="btn-addcart-r">Add to Cart</button>
+        <button class="btn-icon-r"><i class="fas fa-eye"></i></button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="card-badge-r">-15%</div>
+      <div class="card-wish-r"><i class="far fa-heart"></i></div>
+      <div class="card-img-rel"><img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=300&q=80" alt="Earphones"></div>
+      <div class="card-body-r">
+        <div class="card-cat-r">Audio</div>
+        <div class="card-name-r">Samsung Galaxy Buds Pro 2</div>
+        <div class="card-rating-r"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+        <div class="card-price-r"><span class="price-now-r">$169.99</span><span class="price-old-r">$199.99</span></div>
+      </div>
+      <div class="card-actions-rel">
+        <button class="btn-addcart-r">Add to Cart</button>
+        <button class="btn-icon-r"><i class="fas fa-eye"></i></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-bottom">
+    <span>© 2025 SHOPIRE. All rights reserved.</span>
+    <div class="payment-icons">
+      <span>VISA</span><span>MASTERCARD</span><span>PAYPAL</span><span>STRIPE</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="js/api.js"></script>

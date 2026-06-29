@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SHOPIRE - Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="js/shopire-nav.js" defer></script>
+  <link rel="stylesheet" href="css/blog.css"/>
+</head>
+<body>
+<!-- HERO -->
+<div class="page-hero">
+  <h1>Our <span>Blog</span></h1>
+  <p>Tips, guides, and the latest news from the world of tech and electronics.</p>
+  <div class="breadcrumb-hero">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <i class="fas fa-chevron-right" style="font-size:10px"></i>
+    <span>Blog</span>
+  </div>
+</div>
+
+<!-- BLOG LAYOUT -->
+<div class="blog-layout">
+
+  <!-- MAIN -->
+  <div class="blog-main">
+
+    <!-- FEATURED POST 1 -->
+    <div class="featured-post" onclick="openPost(0)">
+      <div class="featured-img">
+        <div class="featured-label">⭐ Featured</div>
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80" alt="Best Headphones 2025">
+      </div>
+      <div class="featured-body">
+        <span class="post-cat"><i class="fas fa-tag"></i> Audio & Tech</span>
+        <h2>Top 10 Wireless Headphones You Must Buy in 2025</h2>
+        <p>The wireless headphone market has exploded in 2025 with stunning new releases from JBL, Sony, Bose, and Apple. We tested them all so you don't have to — here's our definitive ranked guide to find your perfect pair.</p>
+        <div class="post-meta">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div class="author-avatar">A</div>
+            <span style="font-weight:600;color:var(--black)">Ali Hassan</span>
+          </div>
+          <div class="post-meta-item"><i class="fas fa-calendar-alt"></i> March 1, 2025</div>
+          <div class="post-meta-item"><i class="fas fa-clock"></i> 8 min read</div>
+          <div class="post-meta-item"><i class="fas fa-comment"></i> 42 comments</div>
+        </div>
+        <div class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></div>
+      </div>
+    </div>
+
+    <!-- BLOG GRID — 4 cards -->
+    <div class="blog-grid">
+
+      <!-- Post 2 -->
+      <div class="blog-card" onclick="openPost(1)">
+        <div class="blog-card-img">
+          <div class="blog-cat-tag">Smartphones</div>
+          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&q=80" alt="Samsung vs iPhone">
+        </div>
+        <div class="blog-card-body">
+          <h3>Samsung Galaxy S24 vs iPhone 15 Pro: Who Wins in 2025?</h3>
+          <p>The biggest smartphone rivalry continues. We put both flagship phones through brutal real-world tests — camera, battery, performance, and everyday usability — to crown the ultimate winner.</p>
+          <div class="read-btn">Read More <i class="fas fa-arrow-right"></i></div>
+          <div class="blog-meta">
+            <div class="blog-meta-item"><i class="fas fa-user"></i> Sara Malik</div>
+            <div class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 20, 2025</div>
+            <div class="blog-meta-item"><i class="fas fa-clock"></i> 6 min</div>
+            <div class="blog-meta-item"><i class="fas fa-comment"></i> 28</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Post 3 -->
+      <div class="blog-card" onclick="openPost(2)">
+        <div class="blog-card-img">
+          <div class="blog-cat-tag">Smart Home</div>
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80" alt="Smart Home">
+        </div>
+        <div class="blog-card-body">
+          <h3>How to Build the Perfect Smart Home on Any Budget</h3>
+          <p>From budget-friendly smart bulbs to premium security cameras, we'll walk you through building a fully connected smart home step by step — without breaking the bank or your sanity.</p>
+          <div class="read-btn">Read More <i class="fas fa-arrow-right"></i></div>
+          <div class="blog-meta">
+            <div class="blog-meta-item"><i class="fas fa-user"></i> Usman Khan</div>
+            <div class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Feb 14, 2025</div>
+            <div class="blog-meta-item"><i class="fas fa-clock"></i> 10 min</div>
+            <div class="blog-meta-item"><i class="fas fa-comment"></i> 35</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Post 4 -->
+      <div class="blog-card" onclick="openPost(3)">
+        <div class="blog-card-img">
+          <div class="blog-cat-tag">Laptops</div>
+          <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80" alt="Best Laptops">
+        </div>
+        <div class="blog-card-body">
+          <h3>Best Laptops for Students and Professionals in 2025</h3>
+          <p>Whether you're a design student, a developer, or a business professional, we've handpicked the best laptops in every price bracket that deliver outstanding performance and reliability.</p>
+          <div class="read-btn">Read More <i class="fas fa-arrow-right"></i></div>
+          <div class="blog-meta">
+            <div class="blog-meta-item"><i class="fas fa-user"></i> Ali Hassan</div>
+            <div class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Jan 30, 2025</div>
+            <div class="blog-meta-item"><i class="fas fa-clock"></i> 7 min</div>
+            <div class="blog-meta-item"><i class="fas fa-comment"></i> 19</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Post 5 -->
+      <div class="blog-card" onclick="openPost(4)">
+        <div class="blog-card-img">
+          <div class="blog-cat-tag">Tips & Tricks</div>
+          <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=500&q=80" alt="Gaming Setup">
+        </div>
+        <div class="blog-card-body">
+          <h3>Ultimate Gaming Setup Guide: Build Your Dream Battle Station</h3>
+          <p>Every gamer dreams of the perfect setup. From choosing the right monitor refresh rate to cable management secrets and RGB lighting tricks — this is your complete A-to-Z guide to building the ultimate gaming station.</p>
+          <div class="read-btn">Read More <i class="fas fa-arrow-right"></i></div>
+          <div class="blog-meta">
+            <div class="blog-meta-item"><i class="fas fa-user"></i> Zain Ahmed</div>
+            <div class="blog-meta-item"><i class="fas fa-calendar-alt"></i> Jan 18, 2025</div>
+            <div class="blog-meta-item"><i class="fas fa-clock"></i> 12 min</div>
+            <div class="blog-meta-item"><i class="fas fa-comment"></i> 54</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination">
+      <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="blog-sidebar">
+
+    <!-- Search -->
+    <div class="sidebar-box">
+      <div class="sidebar-title">Search</div>
+      <div class="search-form">
+        <input type="text" placeholder="Search articles...">
+        <button><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="sidebar-box">
+      <div class="sidebar-title">Categories</div>
+      <ul class="cat-list">
+        <li><a href="#">Audio & Headphones <span>12</span></a></li>
+        <li><a href="#">Smartphones <span>18</span></a></li>
+        <li><a href="#">Laptops & PCs <span>9</span></a></li>
+        <li><a href="#">Smart Home <span>7</span></a></li>
+        <li><a href="#">Gaming <span>14</span></a></li>
+        <li><a href="#">Wearables <span>6</span></a></li>
+        <li><a href="#">Tips & Tricks <span>11</span></a></li>
+      </ul>
+    </div>
+
+    <!-- Recent Posts -->
+    <div class="sidebar-box">
+      <div class="sidebar-title">Recent Posts</div>
+      <div class="recent-post">
+        <div class="recent-img"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&q=80" alt=""></div>
+        <div class="recent-info">
+          <h5 onclick="openPost(0)">Top 10 Wireless Headphones in 2025</h5>
+          <span><i class="fas fa-calendar-alt" style="color:var(--red)"></i> March 1, 2025</span>
+        </div>
+      </div>
+      <div class="recent-post">
+        <div class="recent-img"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=100&q=80" alt=""></div>
+        <div class="recent-info">
+          <h5 onclick="openPost(1)">Samsung S24 vs iPhone 15 Pro</h5>
+          <span><i class="fas fa-calendar-alt" style="color:var(--red)"></i> Feb 20, 2025</span>
+        </div>
+      </div>
+      <div class="recent-post">
+        <div class="recent-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=100&q=80" alt=""></div>
+        <div class="recent-info">
+          <h5 onclick="openPost(2)">Build a Smart Home on Any Budget</h5>
+          <span><i class="fas fa-calendar-alt" style="color:var(--red)"></i> Feb 14, 2025</span>
+        </div>
+      </div>
+      <div class="recent-post">
+        <div class="recent-img"><img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=100&q=80" alt=""></div>
+        <div class="recent-info">
+          <h5 onclick="openPost(4)">Ultimate Gaming Setup Guide</h5>
+          <span><i class="fas fa-calendar-alt" style="color:var(--red)"></i> Jan 18, 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tags -->
+    <div class="sidebar-box">
+      <div class="sidebar-title">Popular Tags</div>
+      <div class="tags-cloud">
+        <span class="tag">Wireless</span>
+        <span class="tag">5G</span>
+        <span class="tag">Gaming</span>
+        <span class="tag">AI Tech</span>
+        <span class="tag">Budget</span>
+        <span class="tag">Apple</span>
+        <span class="tag">Samsung</span>
+        <span class="tag">Sony</span>
+        <span class="tag">Smart Home</span>
+        <span class="tag">Laptop</span>
+        <span class="tag">4K</span>
+        <span class="tag">Deals</span>
+      </div>
+    </div>
+
+    <!-- Newsletter Sidebar -->
+    <div class="nl-sidebar">
+      <h3>📬 Stay Updated!</h3>
+      <p>Get the latest tech news and exclusive deals delivered to your inbox every week.</p>
+      <input type="email" placeholder="Your email address...">
+      <button>Subscribe Free</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- NEWSLETTER STRIP -->
+<div class="newsletter">
+  <div class="nl-left">
+    <h2>Subscribe & Get 10% Off Your First Order</h2>
+    <p>Join 50,000+ shoppers and get exclusive deals straight to your inbox.</p>
+  </div>
+  <div class="nl-form">
+    <input type="email" placeholder="Enter your email address...">
+    <button>Subscribe Now</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-bottom">
+    <span>© 2025 SHOPIRE. All rights reserved.</span>
+    <div class="payment-icons">
+      <span>VISA</span><span>MASTERCARD</span><span>PAYPAL</span><span>STRIPE</span>
+    </div>
+  </div>
+</footer>
+
+<!-- POST MODAL OVERLAY -->
+<div class="post-overlay" id="overlay" onclick="closePost()"></div>
+
+<!-- MODAL -->
+<div class="post-modal" id="postModal">
+  <button class="modal-close" onclick="closePost()"><i class="fas fa-times"></i></button>
+  <img id="modalImg" class="modal-img" src="" alt="">
+  <div class="modal-body">
+    <span class="modal-cat" id="modalCat"></span>
+    <h1 class="modal-title" id="modalTitle"></h1>
+    <div class="modal-meta" id="modalMeta"></div>
+    <div class="modal-content-text" id="modalContent"></div>
+  </div>
+</div>
+  <script src="js/api.js"></script>
+  <script src="js/shopire-chat.js" defer></script>
+  <script src="js/blog.js"></script>
+</body>
+</html>

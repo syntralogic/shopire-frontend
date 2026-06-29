@@ -1,0 +1,33 @@
+/* checkout.css - SHOPIRE */
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--red:#f3340c;--black:#111;--gray:#f5f5f5;--gray2:#e8e8e8;--text:#333;--muted:#777}
+    body{font-family:'Barlow',sans-serif;background:var(--gray);color:var(--text)}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:40px 20px}
+    h1{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;margin-bottom:30px}
+    .checkout-grid{display:grid;grid-template-columns:1fr 380px;gap:24px}
+    .card{background:white;border-radius:16px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,.06)}
+    .card h2{font-size:18px;font-weight:800;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--gray2)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .form-group{margin-bottom:16px}
+    label{display:block;font-weight:700;font-size:13px;margin-bottom:6px}
+    input,textarea,select{width:100%;padding:11px 14px;border:2px solid var(--gray2);border-radius:9px;font-family:'Barlow',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s}
+    input:focus,textarea:focus,select:focus{border-color:var(--red)}
+    textarea{resize:vertical;min-height:80px}
+    .order-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--gray2)}
+    .order-item img{width:56px;height:56px;object-fit:cover;border-radius:8px;background:var(--gray)}
+    .order-item-info{flex:1}
+    .order-item-name{font-weight:700;font-size:14px}
+    .order-item-qty{font-size:13px;color:var(--muted)}
+    .order-item-price{font-weight:800;color:var(--red)}
+    .summary-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:14px}
+    .summary-row.total{border-top:2px solid var(--gray2);margin-top:8px;padding-top:14px;font-size:18px;font-weight:800}
+    .btn-place{width:100%;padding:16px;background:var(--red);color:white;border:none;border-radius:12px;font-family:'Barlow',sans-serif;font-weight:800;font-size:17px;cursor:pointer;transition:background .2s;margin-top:16px}
+    .btn-place:hover{background:#d42a08}
+    .btn-place:disabled{background:#ccc;cursor:not-allowed}
+    .empty-msg{text-align:center;padding:40px;color:var(--muted)}
+    .msg{padding:12px 16px;border-radius:9px;font-size:14px;font-weight:600;margin-bottom:16px;display:none}
+    .msg.error{background:#fff0ee;color:var(--red);border:1px solid #ffd0c5}
+    .msg.success{background:#f0fff4;color:#16a34a;border:1px solid #bbf7d0}
+    @media(max-width:768px){.checkout-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
