@@ -4,7 +4,7 @@
 // <script src="js/api.js"></script>  (or "../js/api.js")
 // ============================================================
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://shopire-backend.onrender.com/api';
 
 // ── Token Helper ──
 const getToken   = () => localStorage.getItem('shopire_token');
