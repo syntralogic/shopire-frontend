@@ -141,14 +141,19 @@
       return;
     }
 
-    const pid = PRODUCT_ID || 1;
+    const pid = PRODUCT_ID;
     const qty = parseInt(document.getElementById('qty').value) || 1;
     const btn = document.querySelector('.btn-cart');
+
+    if (!pid) {
+      showToast('Product not found.', 'error');
+      return;
+    }
 
     try {
       btn.disabled = true;
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Adding...';
-      await Cart.add(parseInt(pid), qty);
+      await Cart.add(pid, qty);
       showToast('Added to Cart! 🛒', 'success');
       btn.innerHTML = '<i class="fas fa-check"></i> Added!';
       await updateCartBadge();

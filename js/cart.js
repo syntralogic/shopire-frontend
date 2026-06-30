@@ -56,15 +56,15 @@
             <div class="item-name">${item.name}</div>
           </div>
           <div class="item-qty">
-            <button onclick="changeQty(${item.id}, ${item.quantity}, -1)">−</button>
-            <input type="number" id="qty-${item.id}" value="${item.quantity}" min="1" onchange="syncQty(${item.id}, this.value)">
-            <button onclick="changeQty(${item.id}, ${item.quantity}, 1)">+</button>
+            <button onclick="changeQty('${item.id}', ${item.quantity}, -1)">−</button>
+            <input type="number" id="qty-${item.id}" value="${item.quantity}" min="1" onchange="syncQty('${item.id}', this.value)">
+            <button onclick="changeQty('${item.id}', ${item.quantity}, 1)">+</button>
           </div>
           <div class="item-price-col">
             <div class="item-unit-price">$${parseFloat(item.price).toFixed(2)} each</div>
             <div class="item-total" id="total-${item.id}">$${(item.price * item.quantity).toFixed(2)}</div>
           </div>
-          <button class="item-remove" onclick="removeItem(${item.id})" title="Remove"><i class="fas fa-times"></i></button>
+          <button class="item-remove" onclick="removeItem('${item.id}')" title="Remove"><i class="fas fa-times"></i></button>
         </div>
       `).join('');
 

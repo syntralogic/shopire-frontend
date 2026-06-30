@@ -102,7 +102,7 @@
         grid.innerHTML += `
           <div class="product-card" onclick="window.location.href='product-detail.html?id=${p.id}'">
             ${badge ? `<div class="card-badge" style="background:${badgeColor}">${badge}</div>` : ''}
-            <div class="card-wish" onclick="event.stopPropagation()"><i class="far fa-heart"></i></div>
+            <div class="card-wish" data-pid="${p.id}" onclick="event.stopPropagation()"><i class="far fa-heart"></i></div>
             <div class="card-img"><img src="${p.image || 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300'}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300'"></div>
             <div class="card-content">
               <div class="card-body">
@@ -115,7 +115,7 @@
                 </div>
               </div>
               <div class="card-actions">
-                <button class="btn-addcart" onclick="event.stopPropagation(); addToCart(${p.id}, this)">Add to Cart</button>
+                <button class="btn-addcart" onclick="event.stopPropagation(); addToCart('${p.id}', this)">Add to Cart</button>
                 <button class="btn-icon-sm" title="Quick View" onclick="event.stopPropagation(); window.location.href='product-detail.html?id=${p.id}'"><i class="fas fa-eye"></i></button>
               </div>
             </div>
@@ -125,8 +125,7 @@
       // Re-attach wishlist events with localStorage
       const wl = JSON.parse(localStorage.getItem('shopire_wishlist') || '[]');
       document.querySelectorAll('.card-wish').forEach(btn => {
-        const match = btn.getAttribute('onclick');
-        const pid = match ? parseInt(match.match(/\d+/)?.[0]) : null;
+        const pid = btn.getAttribute('data-pid');
         const icon = btn.querySelector('i');
         if (pid && wl.includes(pid)) {
           icon.classList.replace('far', 'fas');
