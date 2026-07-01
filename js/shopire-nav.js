@@ -593,10 +593,13 @@
       .s-hamburger { display: flex; }
       .s-searchbar { padding: 10px 16px; gap: 10px; }
       .s-browse-wrap, .s-contact-box { display: none; }
-      .s-nav { padding: 0 16px; }
+      .s-nav { padding: 0 12px; }
+      .s-nav-right { gap: 2px; }
+      #sDarkToggleBtn { display: none; }
     }
     @media (max-width: 600px) {
       .s-searchbar { display: none; }
+      .s-icon-btn { width: 34px; height: 34px; font-size: 15px; }
     }
   `;
 
