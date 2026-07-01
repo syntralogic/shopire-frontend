@@ -167,3 +167,24 @@
     .stock-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; }
     .stock-text { color: #10b981; font-weight: 700; }
     .stock-count { color: var(--muted); }
+/* ===== RESPONSIVE (mobile fix) ===== */
+@media (max-width: 1000px) {
+  .product-section { flex-direction: column; gap: 24px; padding: 28px 20px; }
+  .gallery { width: 100%; flex-direction: column-reverse; }
+  .thumbs { flex-direction: row; overflow-x: auto; }
+  .main-img img { height: 320px; }
+  .related-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 700px) {
+  .breadcrumb { padding: 10px 16px; flex-wrap: wrap; }
+  .prod-title { font-size: 26px; }
+  .price-main { font-size: 28px; }
+  .desc-grid { grid-template-columns: 1fr; gap: 20px; }
+  .reviews-summary { flex-direction: column; gap: 16px; align-items: flex-start; }
+  .related-grid { grid-template-columns: repeat(2, 1fr); }
+  .tabs-section, .related-section { padding-left: 16px; padding-right: 16px; }
+  .add-cart-row { flex-wrap: wrap; }
+  .btn-cart { flex: 1 1 100%; order: -1; }
+  footer { padding: 24px 20px; }
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+}

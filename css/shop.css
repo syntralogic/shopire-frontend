@@ -142,3 +142,22 @@
     .footer-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #666; }
     .payment-icons { display: flex; gap: 8px; }
     .payment-icons span { background: rgba(255,255,255,.08); padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; color: #aaa; }
+/* ===== RESPONSIVE (mobile fix) ===== */
+@media (max-width: 1000px) {
+  .shop-layout { flex-direction: column; }
+  .filter-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--gray2); }
+  .products-area { padding: 20px 16px; }
+  .products-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 700px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .shop-toolbar { flex-direction: column; align-items: flex-start; }
+  .breadcrumb { padding: 10px 16px; flex-wrap: wrap; }
+  .products-grid.list-view .product-card { flex-direction: column; }
+  .products-grid.list-view .card-img { width: 100%; }
+  footer { padding: 24px 20px; }
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+}
+@media (max-width: 420px) {
+  .products-grid { grid-template-columns: 1fr; }
+}

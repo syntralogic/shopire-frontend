@@ -31,3 +31,5 @@
     .msg.error{background:#fff0ee;color:var(--red);border:1px solid #ffd0c5}
     .msg.success{background:#f0fff4;color:#16a34a;border:1px solid #bbf7d0}
     @media(max-width:768px){.checkout-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
+/* RESPONSIVE - extra small screens */
+@media(max-width:480px){.container{padding:24px 14px}h1{font-size:28px}.card{padding:20px}.order-item{flex-wrap:wrap}}

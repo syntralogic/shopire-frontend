@@ -188,3 +188,26 @@
     .footer-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #666; }
     .payment-icons { display: flex; gap: 8px; }
     .payment-icons span { background: rgba(255,255,255,.08); padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; color: #aaa; }
+/* ===== RESPONSIVE (mobile fix) ===== */
+@media (max-width: 1000px) {
+  .blog-layout { flex-direction: column; padding: 28px 20px; }
+  .blog-sidebar { width: 100%; }
+  .featured-post { grid-template-columns: 1fr; }
+  .featured-img img { min-height: 220px; }
+}
+@media (max-width: 700px) {
+  .page-hero { padding: 40px 20px; }
+  .page-hero h1 { font-size: 36px; }
+  .breadcrumb-hero { flex-wrap: wrap; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .featured-body { padding: 22px; }
+  .featured-body h2 { font-size: 24px; }
+  .newsletter { flex-direction: column; text-align: center; padding: 36px 20px; }
+  .nl-form { width: 100%; }
+  .nl-form input { width: auto; flex: 1; }
+  .modal-body { padding: 20px; }
+  .modal-title { font-size: 26px; }
+  .modal-img { height: 200px; }
+  footer { padding: 24px 20px; }
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+}

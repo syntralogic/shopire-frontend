@@ -29,3 +29,10 @@
     .empty p{color:var(--muted);margin-bottom:20px}
     .btn-red{background:var(--red);color:white;padding:12px 28px;border-radius:50px;font-weight:700;font-size:14px;text-decoration:none;display:inline-block}
     .loading{text-align:center;padding:60px;font-size:18px;color:var(--muted)}
+/* RESPONSIVE - extra small screens */
+@media (max-width: 600px) {
+  h1 { font-size: 26px; }
+  .order-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .order-item { flex-wrap: wrap; }
+  .item-price { margin-left: 0; }
+}
