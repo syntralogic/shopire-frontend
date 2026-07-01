@@ -839,9 +839,9 @@
         <a href="category-monitors.html"><i class="fas fa-desktop"></i>Monitors</a>
         <a href="category-furniture.html"><i class="fas fa-couch"></i>Furniture</a>
       </div>
-      <div class="s-mobile-bottom">
+      <div class="s-mobile-bottom" id="sMobileBottom">
         <a href="shop.html" class="s-mobile-btn-full s-mobile-btn-red"><i class="fas fa-bolt"></i> Shop Now</a>
-        <a href="contact.html" class="s-mobile-btn-full s-mobile-btn-outline"><i class="fas fa-headset"></i> Get Support</a>
+        <div id="sMobileAuthBtns"></div>
       </div>
     </div>
   `;
@@ -915,7 +915,7 @@
   function updateAuthUI() {
     const user = JSON.parse(localStorage.getItem('shopire_user') || 'null');
     const token = localStorage.getItem('shopire_token');
-    const accountLink = document.querySelector('.s-icon-btn[title="Account"]');
+    const accountLink = document.querySelector('.s-icon-btn[title="Account"]') || document.querySelector('.s-icon-btn[title="Login"]');
     if (accountLink) {
       if (user && token) {
         accountLink.href = 'orders.html';
@@ -927,6 +927,26 @@
         accountLink.innerHTML = `<i class="far fa-user"></i>`;
       }
     }
+
+    // Mobile menu auth buttons
+    const mobileAuth = document.getElementById('sMobileAuthBtns');
+    if (mobileAuth) {
+      if (user && token) {
+        mobileAuth.innerHTML = `
+          <div style="padding:14px 16px;border-top:1px solid #eee;margin-top:8px">
+            <div style="font-size:13px;color:#777;margin-bottom:10px">👤 Signed in as <strong style="color:#111">${user.name}</strong></div>
+            <a href="orders.html" class="s-mobile-btn-full s-mobile-btn-outline" style="margin-bottom:8px"><i class="fas fa-box"></i> My Orders</a>
+            <a href="#" class="s-mobile-btn-full s-mobile-btn-outline" onclick="navLogout(event)" style="color:#e53e3e;border-color:#e53e3e"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>`;
+      } else {
+        mobileAuth.innerHTML = `
+          <div style="padding:14px 16px;border-top:1px solid #eee;margin-top:8px;display:flex;gap:8px">
+            <a href="login.html" class="s-mobile-btn-full s-mobile-btn-red" style="flex:1"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="login.html#signup" class="s-mobile-btn-full s-mobile-btn-outline" style="flex:1"><i class="fas fa-user-plus"></i> Sign Up</a>
+          </div>`;
+      }
+    }
+
     // Add logout option to topbar if logged in
     const topbarRight = document.querySelector('.s-topbar-right');
     if (topbarRight && user && token) {

@@ -10,7 +10,10 @@
 
 
     // Redirect if already logged in
-    if (isLoggedIn()) window.location.href = 'index.html';
+    if (isLoggedIn()) {
+      const u = JSON.parse(localStorage.getItem('shopire_user') || 'null');
+      window.location.href = (u && u.role === 'admin') ? 'admin/' : 'index.html';
+    }
 
     function switchTab(tab) {
       document.querySelectorAll('.tab-btn').forEach((b, i) => {
@@ -36,7 +39,8 @@
       try {
         const loginResult = await Auth.login(email, pass);
         showMsg('loginMsg', `✅ Welcome, ${loginResult.user.name}! Redirecting...`, 'success');
-        setTimeout(() => window.location.href = 'index.html', 800);
+        const dest = (loginResult.user.role === 'admin') ? 'admin/' : 'index.html';
+        setTimeout(() => window.location.href = dest, 800);
       } catch (e) {
         showMsg('loginMsg', e.message, 'error');
         btn.disabled = false; btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
