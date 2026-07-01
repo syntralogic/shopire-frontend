@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Checkout – SHOPIRE</title>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet"/>
@@ -11,50 +11,203 @@
 <body>
   <script src="js/shopire-nav.js" defer></script>
 
+  <!-- Order Success Modal -->
+  <div id="successModal" class="success-modal" style="display:none">
+    <div class="success-box">
+      <div class="success-anim">
+        <svg viewBox="0 0 100 100" width="90" height="90">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="#16a34a" stroke-width="5" class="circle-anim"/>
+          <polyline points="28,52 44,68 72,36" fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" class="check-anim"/>
+        </svg>
+      </div>
+      <h2>Order Placed! 🎉</h2>
+      <p id="successOrderId" style="color:#777;font-size:15px;margin:4px 0 16px"></p>
+      <p style="font-size:14px;color:#555;margin-bottom:20px">We'll send a confirmation to your email. Your order is being prepared!</p>
+      <div style="display:flex;gap:10px;justify-content:center">
+        <a href="orders.html" class="btn-modal-primary">View My Orders</a>
+        <a href="index.html" class="btn-modal-outline">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
-    <h1><i class="fas fa-credit-card" style="color:var(--red)"></i> Checkout</h1>
+    <!-- Stepper -->
+    <div class="stepper">
+      <div class="step done"><div class="step-icon"><i class="fas fa-shopping-cart"></i></div><span>Cart</span></div>
+      <div class="step-line done"></div>
+      <div class="step active"><div class="step-icon"><i class="fas fa-credit-card"></i></div><span>Checkout</span></div>
+      <div class="step-line"></div>
+      <div class="step"><div class="step-icon"><i class="fas fa-check"></i></div><span>Confirm</span></div>
+    </div>
+
     <div id="mainMsg" class="msg"></div>
     <div class="checkout-grid">
+      <!-- LEFT -->
       <div>
-        <div class="card">
-          <h2><i class="fas fa-map-marker-alt" style="color:var(--red);margin-right:8px"></i>Delivery Details</h2>
+        <!-- Delivery -->
+        <div class="card section-card">
+          <h2><span class="sec-num">1</span> Delivery Details</h2>
           <div class="form-row">
             <div class="form-group">
-              <label>Your Name *</label>
-              <input type="text" id="dName" placeholder="Full name"/>
+              <label>Full Name *</label>
+              <div class="input-wrap"><i class="fas fa-user"></i><input type="text" id="dName" placeholder="Ali Hassan"/></div>
             </div>
             <div class="form-group">
               <label>Phone *</label>
-              <input type="text" id="dPhone" placeholder="03XX-XXXXXXX"/>
+              <div class="input-wrap"><i class="fas fa-phone"></i><input type="tel" id="dPhone" placeholder="03XX-XXXXXXX"/></div>
             </div>
           </div>
           <div class="form-group">
             <label>Email *</label>
-            <input type="email" id="dEmail" placeholder="email@example.com"/>
+            <div class="input-wrap"><i class="fas fa-envelope"></i><input type="email" id="dEmail" placeholder="you@email.com"/></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>City *</label>
+              <div class="input-wrap"><i class="fas fa-city"></i>
+                <select id="dCity">
+                  <option value="">Select city</option>
+                  <option>Karachi</option><option>Lahore</option><option>Islamabad</option>
+                  <option>Rawalpindi</option><option>Faisalabad</option><option>Multan</option>
+                  <option>Peshawar</option><option>Quetta</option><option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>ZIP / Postal Code</label>
+              <div class="input-wrap"><i class="fas fa-map-pin"></i><input type="text" id="dZip" placeholder="75400"/></div>
+            </div>
           </div>
           <div class="form-group">
             <label>Full Address *</label>
-            <textarea id="dAddress" placeholder="Street address, area..."></textarea>
+            <div class="input-wrap textarea-wrap"><i class="fas fa-map-marker-alt"></i><textarea id="dAddress" placeholder="House #, Street, Area, Block..."></textarea></div>
           </div>
           <div class="form-group">
-            <label>City</label>
-            <input type="text" id="dCity" placeholder="Karachi, Lahore, Islamabad..."/>
+            <label>Delivery Notes <span style="font-weight:400;color:#999">(optional)</span></label>
+            <div class="input-wrap textarea-wrap"><i class="fas fa-sticky-note"></i><textarea id="dNotes" placeholder="Leave at gate, call before delivery..." style="min-height:60px"></textarea></div>
+          </div>
+        </div>
+
+        <!-- Payment -->
+        <div class="card section-card" style="margin-top:20px">
+          <h2><span class="sec-num">2</span> Payment Method</h2>
+
+          <div class="pay-tabs">
+            <button class="pay-tab active" onclick="setPayMethod('card')" id="tabCard">
+              <i class="fas fa-credit-card"></i> Credit / Debit Card
+            </button>
+            <button class="pay-tab" onclick="setPayMethod('cod')" id="tabCod">
+              <i class="fas fa-money-bill-wave"></i> Cash on Delivery
+            </button>
+          </div>
+
+          <!-- Card Section -->
+          <div id="cardSection">
+            <!-- Live Card Preview -->
+            <div class="card-preview" id="cardPreview">
+              <div class="card-preview-inner" id="cardInner">
+                <!-- Front -->
+                <div class="card-front">
+                  <div class="card-front-top">
+                    <div class="card-chip"><div></div><div></div><div></div><div></div></div>
+                    <div id="prevCardType" class="card-brand"><i class="fab fa-cc-visa"></i></div>
+                  </div>
+                  <div class="card-number-preview" id="prevNum">•••• •••• •••• ••••</div>
+                  <div class="card-front-bottom">
+                    <div>
+                      <div class="card-label">Card Holder</div>
+                      <div class="card-value" id="prevName">FULL NAME</div>
+                    </div>
+                    <div>
+                      <div class="card-label">Expires</div>
+                      <div class="card-value" id="prevExp">MM/YY</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Back -->
+                <div class="card-back">
+                  <div class="card-stripe"></div>
+                  <div class="card-cvv-box">
+                    <div class="card-label" style="color:#aaa">CVV</div>
+                    <div class="cvv-strip"><span id="prevCvv">•••</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top:20px">
+              <label>Card Number *</label>
+              <div class="input-wrap card-num-wrap">
+                <i class="fas fa-credit-card"></i>
+                <input type="text" id="cardNum" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)" onfocus="flipCard(false)"/>
+                <span id="cardTypeIcon" class="card-type-badge"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Cardholder Name *</label>
+              <div class="input-wrap"><i class="fas fa-user"></i><input type="text" id="cardName" placeholder="As on card" oninput="updatePreview()" onfocus="flipCard(false)"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Expiry Date *</label>
+                <div class="input-wrap"><i class="fas fa-calendar"></i><input type="text" id="cardExp" placeholder="MM/YY" maxlength="5" oninput="formatExp(this)" onfocus="flipCard(false)"/></div>
+              </div>
+              <div class="form-group">
+                <label>CVV *</label>
+                <div class="input-wrap"><i class="fas fa-lock"></i><input type="password" id="cardCvv" placeholder="•••" maxlength="4" onfocus="flipCard(true)" onblur="flipCard(false)" oninput="updateCvv(this)"/></div>
+              </div>
+            </div>
+            <div class="secure-badges">
+              <span><i class="fas fa-shield-alt"></i> 256-bit SSL</span>
+              <span><i class="fas fa-lock"></i> Secure Payment</span>
+              <span><i class="fas fa-check-circle"></i> PCI Compliant</span>
+            </div>
+          </div>
+
+          <!-- COD Section -->
+          <div id="codSection" style="display:none" class="cod-box">
+            <div class="cod-icon"><i class="fas fa-hand-holding-usd"></i></div>
+            <h3>Cash on Delivery</h3>
+            <p>Pay in cash when your order arrives at your doorstep. No extra charges!</p>
+            <ul class="cod-features">
+              <li><i class="fas fa-check"></i> Free delivery nationwide</li>
+              <li><i class="fas fa-check"></i> Pay only after inspection</li>
+              <li><i class="fas fa-check"></i> 30-day easy returns</li>
+            </ul>
           </div>
         </div>
       </div>
 
+      <!-- RIGHT -->
       <div>
-        <div class="card">
-          <h2><i class="fas fa-shopping-bag" style="color:var(--red);margin-right:8px"></i>Order Summary</h2>
+        <div class="card section-card sticky-card">
+          <h2><span class="sec-num">3</span> Order Summary</h2>
           <div id="orderItems"><div class="empty-msg"><i class="fas fa-spinner fa-spin"></i> Loading cart...</div></div>
+
           <div id="orderSummary" style="display:none">
+            <!-- Promo Code -->
+            <div class="promo-row">
+              <input type="text" id="promoInput" placeholder="Promo code (e.g. SAVE10)" style="flex:1;padding:10px 14px;border:2px solid #e0e0e0;border-radius:9px;font-family:'Barlow',sans-serif;font-size:13px"/>
+              <button onclick="applyPromo()" class="btn-promo">Apply</button>
+            </div>
+            <div id="promoMsg" style="font-size:12px;margin-top:6px;display:none"></div>
+
             <div class="summary-row"><span>Subtotal</span><span id="subtotal">—</span></div>
-            <div class="summary-row"><span>Shipping</span><span style="color:green;font-weight:700">FREE</span></div>
+            <div class="summary-row" id="discountRow" style="display:none;color:#16a34a"><span>Discount <span id="promoLabel"></span></span><span id="discountAmt"></span></div>
+            <div class="summary-row"><span>Shipping</span><span style="color:#16a34a;font-weight:700">FREE</span></div>
+            <div class="summary-row"><span>Tax (5%)</span><span id="taxAmt">—</span></div>
             <div class="summary-row total"><span>Total</span><span id="orderTotal" style="color:var(--red)">—</span></div>
           </div>
+
           <button class="btn-place" id="placeBtn" onclick="placeOrder()">
-            <i class="fas fa-check-circle"></i> Place Order
+            <i class="fas fa-lock"></i> Place Order Securely
           </button>
+          <div class="accept-cards">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-amex"></i>
+            <i class="fab fa-cc-paypal"></i>
+          </div>
         </div>
       </div>
     </div>
