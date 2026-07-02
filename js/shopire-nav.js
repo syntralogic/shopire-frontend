@@ -276,7 +276,7 @@
     .s-nav-right {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       flex-shrink: 0;
     }
     .s-icon-btn {
@@ -287,24 +287,116 @@
       font-size: 17px;
       color: var(--text);
       text-decoration: none;
-      transition: background .15s, color .15s;
+      transition: background .15s, color .15s, transform .15s;
       background: none;
       border: none;
       cursor: pointer;
     }
-    .s-icon-btn:hover { background: var(--gray); color: var(--red); }
+    .s-icon-btn:hover { background: var(--gray); color: var(--red); transform: translateY(-1px); }
     .s-icon-badge {
       position: absolute;
-      top: 4px; right: 4px;
+      top: 3px; right: 3px;
       background: var(--red);
       color: white;
       font-size: 9px;
-      min-width: 16px; height: 16px;
+      min-width: 17px; height: 17px;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-weight: 800;
       padding: 0 3px;
+      border: 2px solid white;
+      box-shadow: 0 1px 4px rgba(243,52,12,.4);
     }
+    /* Cart button special */
+    .s-cart-btn {
+      display: flex; align-items: center; gap: 7px;
+      padding: 7px 12px 7px 10px;
+      border-radius: 12px;
+      background: #fff5f3;
+      border: 1.5px solid #ffd0c5;
+      color: var(--red);
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .18s;
+      position: relative;
+      white-space: nowrap;
+    }
+    .s-cart-btn:hover { background: var(--red); color: white; border-color: var(--red); }
+    .s-cart-btn i { font-size: 16px; }
+    .s-cart-btn .s-cart-total { font-size: 12px; font-weight: 800; }
+    [data-theme="dark"] .s-cart-btn { background: #2a1a18; border-color: #5a2a20; }
+    [data-theme="dark"] .s-cart-btn:hover { background: var(--red); color: white; }
+    /* Account dropdown */
+    .s-account-wrap { position: relative; }
+    .s-account-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 12px 6px 8px;
+      border-radius: 12px;
+      border: 1.5px solid var(--gray2);
+      background: var(--white);
+      cursor: pointer;
+      transition: all .18s;
+      text-decoration: none;
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .s-account-btn:hover { border-color: var(--red); background: #fff5f3; }
+    .s-account-btn .s-av {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--red); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; flex-shrink: 0;
+    }
+    .s-account-name { max-width: 80px; overflow: hidden; text-overflow: ellipsis; }
+    [data-theme="dark"] .s-account-btn { background: #1e1e1e; border-color: #333; }
+    [data-theme="dark"] .s-account-btn:hover { border-color: var(--red); }
+    /* Dropdown */
+    .s-account-drop {
+      position: absolute; top: calc(100% + 8px); right: 0;
+      background: white; border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.15);
+      border: 1px solid #f0f0f0;
+      min-width: 220px; z-index: 9999;
+      display: none; overflow: hidden;
+      animation: dropIn .2s cubic-bezier(.175,.885,.32,1.275);
+    }
+    .s-account-drop.open { display: block; }
+    @keyframes dropIn { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+    .s-drop-header {
+      padding: 16px; background: linear-gradient(135deg,#fff5f3,#fff);
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .s-drop-header .name { font-weight: 800; font-size: 14px; color: #111; }
+    .s-drop-header .email { font-size: 12px; color: #888; margin-top: 2px; }
+    .s-drop-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 16px; color: #333; text-decoration: none;
+      font-size: 13px; font-weight: 600; transition: background .15s;
+      border: none; background: none; width: 100%; cursor: pointer;
+      font-family: 'Barlow', sans-serif;
+    }
+    .s-drop-item:hover { background: #f8f8f8; color: var(--red); }
+    .s-drop-item i { width: 18px; text-align: center; color: #aaa; }
+    .s-drop-item:hover i { color: var(--red); }
+    .s-drop-item.danger { color: #e53e3e; }
+    .s-drop-item.danger i { color: #e53e3e; }
+    .s-drop-item.danger:hover { background: #fff0f0; }
+    .s-drop-divider { height: 1px; background: #f0f0f0; margin: 4px 0; }
+    /* Dark toggle pill */
+    .s-dark-pill {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 10px; border-radius: 20px;
+      border: 1.5px solid var(--gray2); background: transparent;
+      cursor: pointer; font-size: 13px; color: var(--text);
+      transition: all .18s; font-family: 'Barlow', sans-serif;
+    }
+    .s-dark-pill:hover { border-color: #444; background: var(--gray); }
+    [data-theme="dark"] .s-dark-pill { border-color: #444; }
     .s-btn-shop {
       background: var(--red);
       color: white !important;
@@ -594,8 +686,12 @@
       .s-searchbar { padding: 10px 16px; gap: 10px; }
       .s-browse-wrap, .s-contact-box { display: none; }
       .s-nav { padding: 0 12px; }
-      .s-nav-right { gap: 2px; }
+      .s-nav-right { gap: 4px; }
       #sDarkToggleBtn { display: none; }
+      .s-account-name, .s-account-btn .fa-chevron-down { display: none; }
+      .s-account-btn { padding: 6px 8px; border-radius: 50%; }
+      .s-cart-btn span:last-child { display: none; }
+      .s-cart-btn { padding: 7px 10px; }
     }
     @media (max-width: 600px) {
       .s-searchbar { display: none; }
@@ -733,18 +829,33 @@
         <button class="s-icon-btn" onclick="toggleSearch()" title="Search">
           <i class="fas fa-search"></i>
         </button>
-        <a href="#" class="s-icon-btn" title="Wishlist">
+        <a href="wishlist.html" class="s-icon-btn" title="Wishlist" style="color:var(--text)">
           <i class="far fa-heart"></i>
-          <span class="s-icon-badge">3</span>
+          <span class="s-icon-badge" id="wishlistCount" style="display:none">0</span>
         </a>
-        <a href="cart.html" class="s-icon-btn" title="Cart">
+        <!-- Cart -->
+        <a href="cart.html" class="s-cart-btn" id="sCartBtn" title="Cart">
           <i class="fas fa-shopping-bag"></i>
-          <span class="s-icon-badge" id="cartCount">0</span>
+          <span id="cartCount">0</span>
+          <span style="font-size:11px;opacity:.7">items</span>
         </a>
-        <a href="#" class="s-icon-btn" title="Account">
-          <i class="far fa-user"></i>
-        </a>
-        <button class="s-icon-btn" id="sDarkToggleBtn" onclick="toggleDarkMode()" title="Toggle Dark Mode" style="font-size:17px;">
+        <!-- Account -->
+        <div class="s-account-wrap" id="sAccountWrap">
+          <a href="login.html" class="s-account-btn" id="sAccountBtn">
+            <div class="s-av"><i class="far fa-user"></i></div>
+            <span class="s-account-name">Login</span>
+            <i class="fas fa-chevron-down" style="font-size:9px;color:#aaa;margin-left:2px"></i>
+          </a>
+          <div class="s-account-drop" id="sAccountDrop">
+            <div class="s-drop-header" id="sDropHeader">
+              <div class="name" id="sDropName">Guest</div>
+              <div class="email" id="sDropEmail">Sign in to your account</div>
+            </div>
+            <div id="sDropLinks"></div>
+          </div>
+        </div>
+        <!-- Dark mode -->
+        <button class="s-dark-pill" id="sDarkToggleBtn" onclick="toggleDarkMode()" title="Toggle Dark Mode">
           <i id="sDarkIcon" class="fas fa-moon"></i>
         </button>
         <a href="shop.html" class="s-btn-shop">
@@ -915,16 +1026,40 @@
   function updateAuthUI() {
     const user = JSON.parse(localStorage.getItem('shopire_user') || 'null');
     const token = localStorage.getItem('shopire_token');
-    const accountLink = document.querySelector('.s-icon-btn[title="Account"]') || document.querySelector('.s-icon-btn[title="Login"]');
-    if (accountLink) {
+    const btn = document.getElementById('sAccountBtn');
+    const dropLinks = document.getElementById('sDropLinks');
+    const dropName = document.getElementById('sDropName');
+    const dropEmail = document.getElementById('sDropEmail');
+
+    if (btn) {
       if (user && token) {
-        accountLink.href = 'orders.html';
-        accountLink.title = user.name;
-        accountLink.innerHTML = `<i class="fas fa-user-check" style="color:var(--red)"></i>`;
+        const initials = user.name ? user.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase() : 'U';
+        btn.href = 'orders.html';
+        btn.querySelector('.s-av').innerHTML = `<span style="font-size:11px;font-weight:900">${initials}</span>`;
+        btn.querySelector('.s-account-name').textContent = user.name?.split(' ')[0] || 'Account';
+        if (dropName) dropName.textContent = user.name || 'User';
+        if (dropEmail) dropEmail.textContent = user.email || '';
+        if (dropLinks) {
+          dropLinks.innerHTML = `
+            ${user.role === 'admin' ? `<a href="admin/" class="s-drop-item"><i class="fas fa-cog"></i> Admin Panel</a><div class="s-drop-divider"></div>` : ''}
+            <a href="orders.html" class="s-drop-item"><i class="fas fa-box"></i> My Orders</a>
+            <a href="cart.html" class="s-drop-item"><i class="fas fa-shopping-cart"></i> My Cart</a>
+            <div class="s-drop-divider"></div>
+            <button class="s-drop-item danger" onclick="navLogout(event)"><i class="fas fa-sign-out-alt"></i> Logout</button>
+          `;
+        }
       } else {
-        accountLink.href = 'login.html';
-        accountLink.title = 'Login';
-        accountLink.innerHTML = `<i class="far fa-user"></i>`;
+        btn.href = 'login.html';
+        btn.querySelector('.s-av').innerHTML = '<i class="far fa-user"></i>';
+        btn.querySelector('.s-account-name').textContent = 'Login';
+        if (dropName) dropName.textContent = 'Guest';
+        if (dropEmail) dropEmail.textContent = 'Sign in to your account';
+        if (dropLinks) {
+          dropLinks.innerHTML = `
+            <a href="login.html" class="s-drop-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="login.html#signup" class="s-drop-item"><i class="fas fa-user-plus"></i> Create Account</a>
+          `;
+        }
       }
     }
 
@@ -947,7 +1082,7 @@
       }
     }
 
-    // Add logout option to topbar if logged in
+    // Topbar
     const topbarRight = document.querySelector('.s-topbar-right');
     if (topbarRight && user && token) {
       if (!document.getElementById('nav-logout-btn')) {
@@ -961,6 +1096,18 @@
       }
     }
   }
+
+  // Account dropdown toggle
+  document.addEventListener('click', function(e) {
+    const wrap = document.getElementById('sAccountWrap');
+    const drop = document.getElementById('sAccountDrop');
+    if (!wrap || !drop) return;
+    if (wrap.contains(e.target)) {
+      drop.classList.toggle('open');
+    } else {
+      drop.classList.remove('open');
+    }
+  });
 
   window.navLogout = function(e) {
     e.preventDefault();
