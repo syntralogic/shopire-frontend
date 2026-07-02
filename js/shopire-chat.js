@@ -169,13 +169,108 @@
   let isOpen = false;
   let history = [];
   let isTyping = false;
+  let awaitingOrderNum = false;
 
-  const SYSTEM = `You are a friendly and helpful customer support assistant for SHOPIRE, an online electronics and furniture store. 
-Keep answers short (2-4 sentences max). Be warm and professional.
-SHOPIRE sells: Smartphones, Laptops, Headphones, Cameras, Monitors, Gaming gear, Wearables, Audio, Furniture, and Tablets.
-Return policy: 30-day returns on all items. Shipping: Free on orders over $50, otherwise $5.99. Delivery: 3-7 business days standard, 1-2 days express.
-For order tracking, ask for their order number. For product questions, give helpful buying advice.
-Always stay on topic about SHOPIRE products and services.`;
+  // ── RULE-BASED RESPONSE ENGINE ──
+  const RULES = [
+    // Greetings
+    { p: /^(hi|hello|hey|salam|assalam|hola|good\s?(morning|evening|afternoon)|howdy)/i,
+      r: ["Hi there! 👋 Welcome to SHOPIRE! I'm ALEX, your shopping assistant. How can I help you today?",
+          "Hello! 😊 Great to see you at SHOPIRE! Looking for something specific, or can I help you find the perfect product?"] },
+
+    // Orders
+    { p: /order.*status|track.*order|where.*order|my order/i,
+      r: () => { awaitingOrderNum = true; return "Sure! I can help you track your order. Please share your Order ID (e.g. #SHP12345) and I'll look it up for you! 📦"; } },
+    { p: /^#?SHP\d+$|order.*#?\d{4,}/i,
+      r: (m) => { awaitingOrderNum = false; return `Got it! Checking order ${m}... 🔍 Your order is currently **In Transit** and expected to arrive within 2-3 business days. You'll receive an email with tracking details shortly! 📬`; } },
+
+    // Returns & Refunds
+    { p: /return|refund|exchange|money back/i,
+      r: ["Great news! SHOPIRE offers **30-day hassle-free returns** on all items. 🔄\n\nJust go to My Orders → Select the item → Click 'Return'. Refunds are processed within 3-5 business days to your original payment method.",
+          "Our return policy is simple: **30 days, no questions asked!** 💯\n\nItems must be in original condition. Once we receive the return, refunds hit your account in 3-5 business days."] },
+
+    // Shipping
+    { p: /ship|deliver|how long|when.*arriv|express|fast deliver/i,
+      r: ["**Shipping Options:** 🚚\n\n• **Standard** (3-7 days) — FREE on orders over $50, otherwise $5.99\n• **Express** (1-2 days) — $12.99\n• **Same Day** (select cities) — $19.99\n\nAll orders are dispatched within 24 hours!"] },
+
+    // Payment
+    { p: /pay|payment|card|visa|mastercard|paypal|cash|cod|credit/i,
+      r: ["We accept all major payment methods at SHOPIRE! 💳\n\n• Credit/Debit Cards (Visa, Mastercard, Amex)\n• PayPal\n• Cash on Delivery (COD)\n• Stripe\n\nAll transactions are 256-bit SSL encrypted for your safety! 🔒"] },
+
+    // Discount / Promo
+    { p: /discount|promo|coupon|code|offer|sale|deal/i,
+      r: ["Here are our active promo codes! 🎉\n\n• **SAVE10** — 10% off any order\n• **SHOPIRE20** — 20% off $100+\n• **WELCOME15** — 15% off first order\n\nAlso check our Flash Sale banner at the top for today's deals! ⚡"] },
+
+    // Products - Laptops
+    { p: /laptop|macbook|dell|hp|lenovo|asus.*laptop|notebook/i,
+      r: ["We have an amazing laptop collection! 💻\n\nTop picks:\n• MacBook Pro 14\" M3 — $1,699\n• Dell XPS 13 — $899\n• ASUS ROG Gaming — $1,299\n\nVisit our **Laptops** category for full specs & comparisons! All come with manufacturer warranty."] },
+
+    // Products - Phones
+    { p: /phone|smartphone|iphone|samsung|mobile|android/i,
+      r: ["Our smartphone lineup is 🔥\n\nFeatured picks:\n• Samsung Galaxy S24 Ultra\n• iPhone 15 Pro Max\n• Google Pixel 8 Pro\n\nAll unlocked, with free screen protector on orders today! Check the **Smartphones** category for deals."] },
+
+    // Products - Headphones
+    { p: /headphone|earphone|earbud|airpod|speaker|audio|sound/i,
+      r: ["Great audio selection at SHOPIRE! 🎧\n\nBest sellers:\n• Sony WH-1000XM5 (Noise Cancelling) — $349\n• Apple AirPods Pro — $249\n• Bose QuietComfort 45 — $279\n\nAll come with 1-year warranty and free case!"] },
+
+    // Products - Gaming
+    { p: /gaming|game|xbox|playstation|ps5|controller|gpu|graphics/i,
+      r: ["Level up with SHOPIRE's gaming gear! 🎮\n\nHot items:\n• Gaming Chairs (ergonomic, RGB)\n• Mechanical Keyboards\n• High-refresh monitors (144Hz, 240Hz)\n• Gaming headsets\n\nCheck the **Gaming** category for full selection!"] },
+
+    // Cameras
+    { p: /camera|dslr|mirrorless|canon|nikon|sony.*camera|gopro/i,
+      r: ["Capture every moment with our cameras! 📷\n\nFeatured:\n• Sony A7 IV (Mirrorless) — $2,499\n• Canon EOS R50 — $879\n• GoPro Hero 12 — $399\n\nAll cameras include a free memory card this week! 🎁"] },
+
+    // Warranty
+    { p: /warrant|guarantee|broken|defect|repair/i,
+      r: ["All SHOPIRE products come with **manufacturer warranty**! 🛡️\n\n• Electronics: 1 year\n• Laptops & Phones: 1-2 years\n• Furniture: 3 years\n\nFor warranty claims, contact support@shopire.com with your order number and photos of the issue."] },
+
+    // Account / Login
+    { p: /account|login|sign.*in|register|sign.*up|password|forgot/i,
+      r: ["For account help, you can:\n\n• **Login/Register** — Click the account icon in the top nav\n• **Forgot password** — Click 'Forgot Password' on login page\n• **Orders** — Visit 'My Orders' after logging in\n\nNeed more help? Email us at support@shopire.com 📧"] },
+
+    // Contact / Human
+    { p: /human|agent|person|contact|support|email|call|phone.*number|speak/i,
+      r: ["Connect with our team! 📞\n\n• **Phone:** +88 (9800) 6802 (24/7)\n• **Email:** support@shopire.com\n• **Live Chat:** You're already here! 😊\n• **Response time:** Usually under 2 hours\n\nOr visit our **Contact** page for the full form!"] },
+
+    // Stores / Location
+    { p: /store|location|address|near me|visit|physical/i,
+      r: ["SHOPIRE is primarily an **online store** 🌐 delivering nationwide!\n\nHowever, we do have pickup points in:\n• Karachi\n• Lahore\n• Islamabad\n\nFor store addresses, visit our **Find a Store** page in the top nav!"] },
+
+    // Thank you
+    { p: /thank|thanks|thx|appreciate|great|awesome|perfect|helpful/i,
+      r: ["You're so welcome! 😊 Happy shopping at SHOPIRE! 🛍️",
+          "My pleasure! Is there anything else I can help you with today? 💙",
+          "Glad I could help! Don't forget to check our Flash Sale for today's best deals! ⚡"] },
+
+    // Bye
+    { p: /bye|goodbye|see you|later|cya/i,
+      r: ["Goodbye! 👋 Thanks for visiting SHOPIRE. Happy shopping! 🛍️",
+          "See you soon! Don't forget — we have new deals every day! Come back anytime 😊"] },
+
+    // Price / Expensive / Cheap
+    { p: /price|cost|expensive|cheap|afford|budget/i,
+      r: ["SHOPIRE offers products for every budget! 💰\n\n• **Under $50** — Accessories, cables, cases\n• **$50–$300** — Headphones, smartwatches, small gadgets\n• **$300–$1000** — Cameras, tablets, mid-range laptops\n• **$1000+** — Premium laptops, DSLRs, 4K monitors\n\nUse filter on the Shop page to sort by price!"] },
+
+    // Default fallback
+    { p: /.*/,
+      r: ["I'm not sure about that, but I'd love to help! 🤔\n\nYou can ask me about:\n• Products & prices\n• Orders & tracking\n• Shipping & returns\n• Promo codes\n• Payment options\n\nOr type **'contact'** to reach a human agent! 😊",
+          "Hmm, let me point you in the right direction! Try asking about:\n• 'track my order'\n• 'return policy'\n• 'shipping info'\n• 'promo codes'\n• 'contact support'\n\nI'm always here to help! 💙"] }
+  ];
+
+  function getBotReply(text) {
+    // Check if waiting for order number
+    if (awaitingOrderNum && /\d{4,}/.test(text)) {
+      awaitingOrderNum = false;
+      return `Checking order... 🔍 Your order **#${text.replace(/[^0-9]/g,'')}** is **In Transit** and expected within 2-3 business days! You'll get a tracking email soon. 📬`;
+    }
+    for (const rule of RULES) {
+      if (rule.p.test(text)) {
+        const resp = typeof rule.r === 'function' ? rule.r(text) : rule.r;
+        return Array.isArray(resp) ? resp[Math.floor(Math.random() * resp.length)] : resp;
+      }
+    }
+  }
 
   /* ── OPEN / CLOSE ── */
   btn.addEventListener('click', () => toggle(true));
@@ -200,7 +295,8 @@ Always stay on topic about SHOPIRE products and services.`;
     avatar.textContent = role === 'bot' ? '🛒' : '👤';
     const bubble = document.createElement('div');
     bubble.className = 's-msg-bubble';
-    bubble.textContent = text;
+    // Support bold **text**
+    bubble.innerHTML = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
     div.appendChild(avatar);
     div.appendChild(bubble);
     msgsEl.appendChild(div);
@@ -223,7 +319,7 @@ Always stay on topic about SHOPIRE products and services.`;
   }
 
   function botGreet() {
-    addMsg("Hi there! 👋 Welcome to SHOPIRE! I'm your shopping assistant. How can I help you today?", 'bot');
+    addMsg("Hi there! 👋 I'm **ALEX**, SHOPIRE's shopping assistant!\n\nI can help you with orders, products, shipping, returns & more. What can I do for you today?", 'bot');
   }
 
   /* ── QUICK REPLIES ── */
@@ -249,28 +345,14 @@ Always stay on topic about SHOPIRE products and services.`;
     sendBtn.disabled = true;
     showTyping();
 
-    try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 300,
-          system: SYSTEM,
-          messages: history
-        })
-      });
-      const data = await res.json();
-      const reply = (data.content && data.content[0] && data.content[0].text)
-        ? data.content[0].text
-        : "Sorry, I couldn't get a response right now. Please try again!";
-      removeTyping();
-      addMsg(reply, 'bot');
-      history.push({ role: 'assistant', content: reply });
-    } catch (err) {
-      removeTyping();
-      addMsg("Oops! Something went wrong. Please try again in a moment.", 'bot');
-    }
+    // Simulate natural typing delay (600-1200ms)
+    const delay = 600 + Math.random() * 600;
+    await new Promise(r => setTimeout(r, delay));
+
+    removeTyping();
+    const reply = getBotReply(text);
+    addMsg(reply, 'bot');
+    history.push({ role: 'assistant', content: reply });
 
     isTyping = false;
     sendBtn.disabled = false;
