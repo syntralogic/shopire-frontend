@@ -38,7 +38,7 @@
         couponRow.style.display = 'none';
         bottomRow.style.display = 'none';
         setTotals(0, 0, 0, 0);
-        document.getElementById('cartCount').textContent = '0 items in your cart';
+        document.getElementById('cartCount').textContent = '0';
         return;
       }
 
@@ -95,7 +95,7 @@
     const tax = discounted * 0.08;
     const total = discounted + tax;
     setTotals(subtotal, tax, total, cartData.length);
-    document.getElementById('cartCount').textContent = cartData.length + ' item' + (cartData.length !== 1 ? 's' : '') + ' in your cart';
+    document.getElementById('cartCount').textContent = cartData.length;
     if (document.getElementById('cartBadge')) document.getElementById('cartBadge').textContent = cartData.length;
   }
 

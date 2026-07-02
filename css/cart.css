@@ -1,3 +1,4 @@
+html,body{overflow-x:hidden;max-width:100vw}
 /* cart.css - SHOPIRE */
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -138,8 +139,11 @@
   .also-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
-  .steps-bar { padding: 14px 16px; }
-  .steps { flex-wrap: wrap; }
+  .steps-bar { padding: 10px 12px; }
+  .steps { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; }
+  .step-num { width: 26px; height: 26px; font-size: 11px; flex-shrink: 0; }
+  .step span { font-size: 10px; white-space: nowrap; }
+  .step-line { min-width: 24px; margin: 0 6px; }
   .breadcrumb { padding: 10px 16px; flex-wrap: wrap; }
   .cart-item { flex-wrap: wrap; gap: 12px; }
   .item-info { flex: 1 1 100%; order: 2; }

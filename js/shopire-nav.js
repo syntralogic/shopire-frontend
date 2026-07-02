@@ -88,6 +88,8 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      max-width: 100vw;
+      overflow: hidden;
       height: var(--nav-h);
       transition: box-shadow .3s;
     }
@@ -326,6 +328,7 @@
     .s-cart-btn:hover { background: var(--red); color: white; border-color: var(--red); }
     .s-cart-btn i { font-size: 16px; }
     .s-cart-btn .s-cart-total { font-size: 12px; font-weight: 800; }
+    .s-cart-label { font-size: 12px; font-weight: 600; opacity: .8; }
     [data-theme="dark"] .s-cart-btn { background: #2a1a18; border-color: #5a2a20; }
     [data-theme="dark"] .s-cart-btn:hover { background: var(--red); color: white; }
     /* Account dropdown */
@@ -689,9 +692,9 @@
       .s-nav-right { gap: 4px; }
       #sDarkToggleBtn { display: none; }
       .s-account-name, .s-account-btn .fa-chevron-down { display: none; }
-      .s-account-btn { padding: 6px 8px; border-radius: 50%; }
-      .s-cart-btn span:last-child { display: none; }
-      .s-cart-btn { padding: 7px 10px; }
+      .s-account-btn { padding: 5px 8px; border-radius: 50%; border: none; background: transparent; }
+      .s-cart-label { display: none; }
+      .s-cart-btn { padding: 6px 10px; gap: 5px; border-radius: 10px; font-size: 13px; }
     }
     @media (max-width: 600px) {
       .s-searchbar { display: none; }
@@ -837,7 +840,7 @@
         <a href="cart.html" class="s-cart-btn" id="sCartBtn" title="Cart">
           <i class="fas fa-shopping-bag"></i>
           <span id="cartCount">0</span>
-          <span style="font-size:11px;opacity:.7">items</span>
+          <span class="s-cart-label">items</span>
         </a>
         <!-- Account -->
         <div class="s-account-wrap" id="sAccountWrap">
